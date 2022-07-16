@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="head">
+
+    <meta charset="UTF-8">
+    <link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+		rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+	
+    <script type="text/javascript"src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready( function () {
+        $('#dataTable').DataTable();
+    } );
+    </script>
+    <style>
+    body {
+      background-image: url("https://web-assets.bcg.com/dims4/default/a54443b/2147483647/strip/true/crop/2880x1440+0+90/resize/800x400!/quality/90/?url=http%3A%2F%2Fboston-consulting-group-brightspot.s3.amazonaws.com%2Fca%2Fe5%2F4bd4ce07339cda0ee56e4e762cbe%2Fdigital-transforms-innovation-2880x1620-102729576-tcm9-180941.jpg"); --Image
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-size: 100%;
+      background-color: #000000; --When image ends, blackness!
+
+    }
+  </style>
+
+</th:block>
