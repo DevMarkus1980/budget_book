@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="navbar_all_filter">
+	<div class="row justify-content-md-center " style="background-color: rgba(0, 0, 0, 0.6);">
+	    <div class="col-md-auto btn-group-sm  mb-3">
+
+	    <a type="button" class="btn btn-outline-secondary "
+		   th:classappend="${#httpServletRequest.getRequestURI().startsWith('/logs/show_all_from') ? 'active':''}"
+		   th:href="@{/logs/logs_all}">
+		    <i class="bi bi-plus-circle"></i> Show All Logs </a>
+
+	    <a type="button" class="btn btn-outline-secondary "
+		   th:classappend="${#strings.equals(#request.getParameter('errorStatus'),'ERROR') ? 'active':''}"
+		   th:href="@{/logs/logs_all_by_status(errorStatus='ERROR')}">
+		    <i class="bi bi-plus-circle"></i> Show Error Logs </a>
+
+
+		<a type="button" class="btn btn-outline-secondary "
+		   th:classappend="${#strings.equals(#request.getParameter('errorStatus'),'WARN') ? 'active':''}"
+		   th:href="@{/logs/logs_all_by_status(errorStatus='WARN')}">
+		    <i class="bi bi-plus-circle"></i> Show Warning Logs </a>
+
+	    <a type="button" class="btn btn-outline-secondary "
+		   th:classappend="${#strings.equals(#request.getParameter('errorStatus'),'DEBUG') ? 'active':''}"
+		   th:href="@{/logs/logs_all_by_status(errorStatus='DEBUG')}">
+		    <i class="bi bi-plus-circle"></i> Show Debug Logs </a>
+
+	    <a type="button" class="btn btn-outline-secondary "
+		   th:classappend="${#strings.equals(#request.getParameter('errorStatus'),'INFO') ? 'active':''}"
+		   th:href="@{/logs/logs_all_by_status(errorStatus='INFO')}">
+		    <i class="bi bi-plus-circle"></i> Show Info Logs </a>
+
+	    <a type="button" class="btn btn-outline-warning "
+		   th:href="@{/logs/logs_reload}">
+		    <i class="bi bi-plus-circle"></i> Reload Log Files </a>
+
+	    </div>
+	</div>
+</div>
