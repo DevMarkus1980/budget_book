@@ -5,7 +5,24 @@
 </head>
 
 <body>
+<img src="dagobert.png" alt="Paris" class="m-3 rounded mx-auto d-block" width="200" height="150">
+<div class="d-grid gap-2 m-5 align-items-center">
+	<button class="me-1 ps-2 pe-2 rounded btn btn-secondary btn-sm text-uppercase fw-bolder"
+			th:onclick="|window.location.href='@{/logs/logs_all_by_status?errorStatus=ERROR}'|"
+			type="button">Sparkauf
+	</button>
+	<button class="me-1 ps-3 pe-3 rounded btn btn btn-secondary btn-sm text-uppercase fw-bolder text-light"
+			th:classappend="${#httpServletRequest.getRequestURI().startsWith('/logs/logs_all_by_status') ? 'active':''}"
+			th:onclick="|window.location.href='@{/logs/logs_all_by_status?errorStatus=ERROR}'|"
+			type="button">Einsparungen
+	</button>
+	<button class="me-1 ps-2 pe-2 rounded btn btn-secondary btn-sm text-uppercase fw-bolder text-light"
+			th:classappend="${#httpServletRequest.getRequestURI().startsWith('/logs/logs_all_by_status') ? 'active':''}"
+			th:onclick="|window.location.href='@{/logs/logs_all_by_status?errorStatus=ERROR}'|"
+			type="button">Alle
+	</button>
+</div>
 
-<h1>Test</h1>
+
 </body>
 </html>
