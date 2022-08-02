@@ -1,28 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div class="header mt-3" style="background-color: rgba(0, 0, 0, 0.6);" th:fragment="myheader">
+<div class="header mt-3" th:fragment="myheader">
 
 	<nav class="navbar ml-auto navbar-expand navbar-dark sticky-top ">
 
-	<a class="navbar-brand ms-5" href="/home"><img class="" src="/pics/monitoring.png" alt="Logo" width="40" height="40" ></a>
+	<a class="navbar-brand ms-5" href="/home"><img class="" src="dagobert.png" alt="Logo" width="40" height="40" ></a>
 		<div>
 			<button class="nav-item me-1 ps-2 pe-2 rounded btn btn-outline-warning btn-lg text-uppercase fw-bolder"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/logs/logs_all_by_status') ? 'active':''}"
 					th:onclick="|window.location.href='@{/logs/logs_all_by_status?errorStatus=ERROR}'|"
 					type="button"><a  class="nav-link " th:text="'Alle'" />
 			</button>
-		</div>
-		<div class="collapse navbar-collapse justify-content-md-center d-flex flex-wrap">
-
-			<ul th:each="app : ${apps}" class="navbar-nav ml-auto">
-				<li>
-					<button type="button" class="nav-item mb-1 ms-1 ps-2 pe-2 rounded btn btn-outline-primary btn-sm text-uppercase fw-bolder"
-							th:classappend="${#strings.equals(#request.getParameter('application'),app) ? 'active':''}"
-							th:onclick="|window.location.href='@{/logs/show_all_from(application=${app})}'|">
-						<a  class="nav-link " th:text="${app}" />
-					</button>
-				</li>
-			</ul>
 		</div>
 
 		<div class="me-5">
