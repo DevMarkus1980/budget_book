@@ -6,7 +6,7 @@
 
 	<a class="navbar-brand ms-5" href="/home"><img class="" src="/pics/monitoring.png" alt="Logo" width="40" height="40" ></a>
 		<div>
-			<button class="nav-item me-1 ps-2 pe-2 rounded btn btn-outline-warning btn-sm text-uppercase fw-bolder"
+			<button class="nav-item me-1 ps-2 pe-2 rounded btn btn-outline-warning btn-lg text-uppercase fw-bolder"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/logs/logs_all_by_status') ? 'active':''}"
 					th:onclick="|window.location.href='@{/logs/logs_all_by_status?errorStatus=ERROR}'|"
 					type="button"><a  class="nav-link " th:text="'Alle'" />
