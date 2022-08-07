@@ -29,14 +29,14 @@ public class SparController {
 	@GetMapping
 	public ModelAndView showHome(Model model) {
 
-		model.addAttribute("users", sparBuchungsService.getSparBuchung());
+		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
 		model.addAttribute("newEntry",  new SparkaufBuchungsModel());
 		return new ModelAndView("Sides/Spar/spar_buchungen");
 	}
 	@PostMapping
 	public ModelAndView saveHome(Model model,
-								 @ModelAttribute SparkaufBuchungsModel sparkaufBuchungsModel) {
-		sparBuchungsService.createBuchung(sparkaufBuchungsModel);
+								 @ModelAttribute SparkaufBuchungsModel newEntry) {
+		sparBuchungsService.createBuchung(newEntry);
 		return new ModelAndView("redirect:/spar/");
 	}
 
