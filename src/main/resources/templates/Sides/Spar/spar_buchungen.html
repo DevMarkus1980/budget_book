@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="Components/head :: head">
+	<title> Placeholder </title>
+</head>
+
+<body class="bg-dark text-white ">
+<div th:insert="/Components/header :: myheader"></div>
+
+<form method="post" th:action="@{/spar/}" th:object="${newEntry}">
+	<input id="buyDate" placeholder="Enter Produkt buyDate" required type="text" th:field="*{buyDate}"/>
+	<input id="produkt" placeholder="Enter Produkt Name" required type="text" th:field="*{produkt}"/>
+	<input id="menge" placeholder="Enter Menge" required type="text" th:field="*{menge}"/>
+	<!--
+
+	<input id="mHDDate" placeholder="Enter mHDDate" required type="text" th:field="*{mHDDate}"/>
+	--->
+	<input id="einkaufsPreis" placeholder="Enter EinkaufsPreis" required type="text" th:field="*{einkaufsPreis}"/>
+	<input id="normalPreis" placeholder="Enter NormalPreis" required type="text" th:field="*{normalPreis}"/>
+
+	<input type="submit" value="Speichern">
+</form>
+</body>
+</html>

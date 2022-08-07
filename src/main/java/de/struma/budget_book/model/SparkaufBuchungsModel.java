@@ -13,10 +13,10 @@ public class SparkaufBuchungsModel {
     @Column(name="Spar_ID")
     private long id;
 
-    private Timestamp buyDate;
-    private Timestamp mHDDate;
     private String produkt;
     private Double menge;
+    private Timestamp buyDate;
+    private Timestamp mHDDate;
     private Double einkaufsPreis;
     private Double normalPreis;
 
