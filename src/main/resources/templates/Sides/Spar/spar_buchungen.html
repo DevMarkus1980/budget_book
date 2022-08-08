@@ -30,12 +30,13 @@
 		   class="table table-sm table-striped table-hover table-bordered align-middle justify-end"  >
 		<thead class="sticky-top bg-white shadow">
 		<tr class="">
-			<th>buyDate</th>
-			<th>produkt</th>
-			<th>menge</th>
-			<th>mHDDate</th>
-			<th>einkaufsPreis</th>
-			<th>normalPreis</th>
+			<th>Gekauft</th>
+			<th>Artikel</th>
+			<th>Menge</th>
+			<th>MHD</th>
+			<th>EK-Preis</th>
+			<th>L-Preis</th>
+			<th>Extra</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -46,6 +47,7 @@
 			<td><span th:text="${entry.mHDDate}"></span></td>
 			<td><span th:text="${entry.einkaufsPreis}"></span> € </td>
 			<td><span th:text="${entry.normalPreis}"></span> € </td>
+			<td><a th:href="@{delete/__${entry.id}__}" class="btn btn-danger">Delete</a></td>
 
 
 		</tbody>

@@ -4,6 +4,7 @@ import de.struma.budget_book.model.SparkaufBuchungsModel;
 import de.struma.budget_book.repository.SparkaufBuchungsRepository;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Service
@@ -23,4 +24,10 @@ public class SparBuchungsService {
         return sparkaufBuchungsRepository.save(SparInfo);
     }
 
+    public void deleteBuchung(Long id) {
+        if (sparkaufBuchungsRepository.existsById(id)) {
+            sparkaufBuchungsRepository.deleteById(id);
+        }
+
+    }
 }
