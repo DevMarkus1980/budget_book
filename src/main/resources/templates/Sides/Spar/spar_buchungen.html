@@ -5,8 +5,10 @@
 </head>
 
 <body class="bg-dark text-white ">
-<div th:insert="/Components/header :: myheader"></div>
+<!--
 
+<div th:insert="/Components/header :: myheader"></div>
+-->
 <form method="post" th:action="@{/spar/}" th:object="${newEntry}">
 
 	<input id="buyDate" class="form-control" autocomplete="off" type="date" th:field="*{buyDate}"/>
