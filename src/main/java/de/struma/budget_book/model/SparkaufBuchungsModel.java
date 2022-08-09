@@ -12,19 +12,23 @@ public class SparkaufBuchungsModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name="Spar_ID")
-    private long id;
+    long id;
 
-    private String produkt;
-    private Double menge;
-
+    String produkt;
+    Double menge;
+    Double mengeLager;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate buyDate = LocalDate.now();
-
+    LocalDate buyDate = LocalDate.now();
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate mHDDate;
+    LocalDate mHDDate = LocalDate.now().plusWeeks(2);
 
-    private Double einkaufsPreis;
-    private Double normalPreis;
+    Double einkaufsPreis;
+    Double normalPreis;
+
+    public void setMenge(Double menge) {
+        this.menge = menge;
+        this.mengeLager = menge;
+    }
 
     public String getBuyDate() {
         String dateAsString = "";

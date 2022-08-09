@@ -16,6 +16,7 @@ public class SparController {
 		this.sparBuchungsService = sparBuchungsService;
 	}
 
+	// Get
 	@GetMapping
 	public ModelAndView showHome(Model model) {
 
@@ -23,12 +24,23 @@ public class SparController {
 		model.addAttribute("newEntry",  new SparkaufBuchungsModel());
 		return new ModelAndView("Sides/Spar/spar_buchungen");
 	}
+
+	@GetMapping(value = "/lager/")
+	public ModelAndView showLager(Model model) {
+
+		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
+		model.addAttribute("view",  "lager");
+		return new ModelAndView("Sides/Spar/spar_buchungen");
+	}
+
+	// Create
 	@PostMapping
 	public ModelAndView saveHome(Model model, @ModelAttribute SparkaufBuchungsModel newEntry) {
 		sparBuchungsService.createBuchung(newEntry);
 		return new ModelAndView("redirect:/spar/");
 	}
 
+	// Delete
 	@RequestMapping(value = "/delete/{id}")
 	private ModelAndView deleteBuchung(@PathVariable(name = "id") Long id){
 		sparBuchungsService.deleteBuchung(id);
