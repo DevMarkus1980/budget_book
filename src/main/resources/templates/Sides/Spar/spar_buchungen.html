@@ -6,13 +6,15 @@
 
 <body class="bg-dark text-white ">
 
-	<div th:replace="/Components/header :: myheader"></div>
+	<div th:include="/Components/header :: myheader"></div>
 
 	<div class="m-2">
 
+		<!--
+
 		<div th:if="${view != 'lager'}" class="me-2" th:replace="/Sides/Spar/Components/formular :: formular"></div>
 		<div class="mt-2" th:replace="/Sides/Spar/Components/table :: table_all"></div>
-
+-->
 	</div>
 </body>
 </html>
