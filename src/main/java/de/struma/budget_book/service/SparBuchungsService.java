@@ -2,11 +2,11 @@ package de.struma.budget_book.service;
 
 import de.struma.budget_book.model.SparkaufBuchungsModel;
 import de.struma.budget_book.repository.SparkaufBuchungsRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-
+@Slf4j
 @Service
 public class SparBuchungsService {
 
@@ -20,8 +20,8 @@ public class SparBuchungsService {
         return sparkaufBuchungsRepository.findAll();
     }
 
-    public SparkaufBuchungsModel createBuchung(SparkaufBuchungsModel SparInfo) {
-        return sparkaufBuchungsRepository.save(SparInfo);
+    public SparkaufBuchungsModel createBuchung(SparkaufBuchungsModel sparInfo) {
+        return sparkaufBuchungsRepository.save(sparInfo);
     }
 
     public void deleteBuchung(Long id) {

@@ -1,32 +1,20 @@
 package de.struma.budget_book.controller;
 
 import de.struma.budget_book.model.SparkaufBuchungsModel;
-import de.struma.budget_book.repository.SparkaufBuchungsRepository;
 import de.struma.budget_book.service.SparBuchungsService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.List;
-
+@Slf4j
 @RequestMapping(value = {"/spar/"})
 @RestController
 public class SparController {
 
-	Logger logger = LoggerFactory.getLogger(SparController.class);
-
-	@Autowired
-	SparkaufBuchungsRepository 	sparkaufBuchungsRepository;
-
-	@Autowired
 	SparBuchungsService sparBuchungsService;
+	public SparController(SparBuchungsService sparBuchungsService) {
+		this.sparBuchungsService = sparBuchungsService;
+	}
 
 	@GetMapping
 	public ModelAndView showHome(Model model) {
