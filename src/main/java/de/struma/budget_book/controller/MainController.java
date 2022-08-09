@@ -1,22 +1,26 @@
 package de.struma.budget_book.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import de.struma.budget_book.service.SparBuchungsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+@Slf4j
 @RequestMapping(value = {"/home", "/"})
 @RestController
 public class MainController {
 
-	Logger logger = LoggerFactory.getLogger(MainController.class);
+	SparBuchungsService sparBuchungsService;
 
+	public MainController(SparBuchungsService sparBuchungsService) {
+		this.sparBuchungsService = sparBuchungsService;
+	}
 	@GetMapping
 	public ModelAndView showHome(Model model) {
-
+		model.addAttribute("allMoneySavings", sparBuchungsService.getAlleEinsparungenInsgesamt());
 		return new ModelAndView("Sides/Home/index");
 	}
 	
