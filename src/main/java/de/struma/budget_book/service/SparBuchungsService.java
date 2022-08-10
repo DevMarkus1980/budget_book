@@ -36,7 +36,7 @@ public class SparBuchungsService {
         double summe = 0.0;
         List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findAll();
         for (SparkaufBuchungsModel einsparung : alleEinsparungen) {
-            summe = summe + (einsparung.getNormalPreis() - einsparung.getEinkaufsPreis());
+            summe = summe + ((einsparung.getNormalPreis() - einsparung.getEinkaufsPreis())* einsparung.getMenge());
         }
         return summe;
     }

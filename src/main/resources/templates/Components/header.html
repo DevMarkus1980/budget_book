@@ -9,6 +9,11 @@
 
 		<div>
 			<button class="ms-2 p-3 rounded btn btn-outline-primary btn-lg text-uppercase fw-bolder"
+					th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+					th:onclick="|window.location.href='@{/}'|"
+					type="button"><i class="bi bi-cash-coin"></i>
+			</button>
+			<button class="ms-2 p-3 rounded btn btn-outline-primary btn-lg text-uppercase fw-bolder"
 					th:classappend="${#httpServletRequest.getRequestURI() == '/spar/' ? 'active':''}"
 					th:onclick="|window.location.href='@{/spar/}'|"
 					type="button">Neu
