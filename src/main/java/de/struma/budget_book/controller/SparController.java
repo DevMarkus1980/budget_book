@@ -45,7 +45,21 @@ public class SparController {
 	@GetMapping(value = "/inventur/")
 	public ModelAndView showInventur(Model model) {
 
-		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
+		model.addAttribute("entries", sparBuchungsService.getInventar());
+		model.addAttribute("view",  "inventur");
+		return new ModelAndView("Sides/Spar/spar_buchungen");
+	}
+	@GetMapping(value = "/inventur/plus/{id}")
+	public ModelAndView plusProduct(Model model, @PathVariable(name = "id") Long id) {
+		sparBuchungsService.plusProduct(id);
+		model.addAttribute("entries", sparBuchungsService.getInventar());
+		model.addAttribute("view",  "inventur");
+		return new ModelAndView("Sides/Spar/spar_buchungen");
+	}
+	@GetMapping(value = "/inventur/minus/{id}")
+	public ModelAndView minusProduct(Model model, @PathVariable(name = "id") Long id) {
+		sparBuchungsService.minusProduct(id);
+		model.addAttribute("entries", sparBuchungsService.getInventar());
 		model.addAttribute("view",  "inventur");
 		return new ModelAndView("Sides/Spar/spar_buchungen");
 	}

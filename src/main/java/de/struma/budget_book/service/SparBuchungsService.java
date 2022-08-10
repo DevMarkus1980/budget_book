@@ -43,10 +43,28 @@ public class SparBuchungsService {
 
     public double getWertWarenbestand() {
         double summe = 0.0;
-        List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findAll();
+        List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findByMengeLagerNotNull();
         for (SparkaufBuchungsModel einsparung : alleEinsparungen) {
             summe = summe + (einsparung.getNormalPreis() * einsparung.getMengeLager());
         }
         return summe;
+    }
+
+    public List<SparkaufBuchungsModel> getInventar()  {return sparkaufBuchungsRepository.findAll();
+    }
+
+    public void plusProduct(Long id) {
+        SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
+        if(buchung.getMengeLager() < buchung.getMenge()) {
+            buchung.setMengeLager(buchung.getMengeLager() + 1);
+            sparkaufBuchungsRepository.save(buchung);
+        }
+    }
+    public void minusProduct(Long id) {
+        SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
+        if(buchung.getMengeLager() > 0)  {
+            buchung.setMengeLager(buchung.getMengeLager() - 1);
+            sparkaufBuchungsRepository.save(buchung);
+        }
     }
 }
