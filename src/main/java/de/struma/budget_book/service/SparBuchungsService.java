@@ -50,8 +50,7 @@ public class SparBuchungsService {
         return summe;
     }
 
-    public List<SparkaufBuchungsModel> getInventar()  {return sparkaufBuchungsRepository.findAll();
-    }
+    public List<SparkaufBuchungsModel> getInventar()  {return sparkaufBuchungsRepository.findByMengeLagerGreaterThan(0.0);}
 
     public void plusProduct(Long id) {
         SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
