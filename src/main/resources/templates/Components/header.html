@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="Components/head :: head">
-	<title> Placeholder </title>
-</head>
-<body>
-<div class="header mt-3" th:fragment="header">
-	<nav class="navbar ml-auto navbar-center navbar-dark sticky-top ">
+<body >
+
+
+<div class="header mt-3 " th:fragment="header">
+	<nav class="navbar ml-auto navbar-center sticky-top ">
 
 		<div>
-			<button class="ms-2 p-3 rounded btn btn-outline-primary btn-lg text-uppercase fw-bolder"
+			<button class="ms-2 p-3 rounded btn btn-outline-light indigo-300 btn-lg text-uppercase fw-bolder"
 					th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
 					th:onclick="|window.location.href='@{/}'|"
-					type="button"><i class="bi bi-cash-coin"></i>
+					type="button"><i class="bi bi-box-arrow-left"></i>
 			</button>
-			<button class="ms-2 p-3 rounded btn btn-outline-primary btn-lg text-uppercase fw-bolder"
+			<button class="ms-1 p-3 rounded btn btn-outline-light btn-lg text-uppercase fw-bolder"
 					th:classappend="${#httpServletRequest.getRequestURI() == '/spar/' ? 'active':''}"
 					th:onclick="|window.location.href='@{/spar/}'|"
 					type="button">Neu
 			</button>
-			<button class="ms-2 p-3 rounded btn btn-outline-primary btn-lg text-uppercase fw-bolder"
+			<button class="ms-1 p-3 rounded btn btn-outline-light btn-lg text-uppercase fw-bolder"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/lager/') ? 'active':''}"
 					th:onclick="|window.location.href='@{/spar/lager/}'|"
 					type="button">Lager
@@ -27,10 +26,9 @@
 
 		<div class="me-5">
 			<button title="release" th:text="${@versionsnummer.getVersion()}"
-					type="button" disabled class="btn btn-outline-primary btn-sm ms-2"></button>
+					type="button" disabled class="btn btn-outline-light btn-sm ms-2"></button>
 		</div>
 
 	</nav>
 </div>
-
 </body>

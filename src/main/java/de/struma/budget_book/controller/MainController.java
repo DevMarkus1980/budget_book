@@ -18,9 +18,11 @@ public class MainController {
 	public MainController(SparBuchungsService sparBuchungsService) {
 		this.sparBuchungsService = sparBuchungsService;
 	}
+
 	@GetMapping
 	public ModelAndView showHome(Model model) {
 		model.addAttribute("allMoneySavings", sparBuchungsService.getAlleEinsparungenInsgesamt());
+		model.addAttribute("totalInventory", sparBuchungsService.getWertWarenbestand());
 		return new ModelAndView("Sides/Home/index");
 	}
 	
