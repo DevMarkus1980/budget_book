@@ -22,6 +22,11 @@
 					th:onclick="|window.location.href='@{/spar/lager/}'|"
 					type="button">Lager
 			</button>
+			<button class="ms-1 p-3 rounded btn btn-outline-light btn-lg text-uppercase fw-bolder"
+					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/inventur/') ? 'active':''}"
+					th:onclick="|window.location.href='@{/spar/inventur/}'|"
+					type="button">Inventur
+			</button>
 		</div>
 
 		<div class="me-5">

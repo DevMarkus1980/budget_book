@@ -11,9 +11,9 @@
 
 	<div class="m-2">
 
-		<div th:if="${view != 'lager'}" class="me-2" th:insert="Sides/Spar/Components/formular :: formular"></div>
+		<div th:if="${view == 'newEntry'}" class="me-2" th:insert="Sides/Spar/Components/formular :: formular"></div>
 		<div class="mt-2" th:insert="Sides/Spar/Components/table :: table_all"></div>
--->
+
 	</div>
 </body>
 </html>

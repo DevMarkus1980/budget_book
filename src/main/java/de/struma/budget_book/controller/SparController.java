@@ -30,6 +30,7 @@ public class SparController {
 	public ModelAndView showHome(Model model) {
 
 		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
+		model.addAttribute("view",  "newEntry");
 		model.addAttribute("newEntry",  new SparkaufBuchungsModel());
 		return new ModelAndView("Sides/Spar/spar_buchungen");
 	}
@@ -39,6 +40,13 @@ public class SparController {
 
 		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
 		model.addAttribute("view",  "lager");
+		return new ModelAndView("Sides/Spar/spar_buchungen");
+	}
+	@GetMapping(value = "/inventur/")
+	public ModelAndView showInventur(Model model) {
+
+		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
+		model.addAttribute("view",  "inventur");
 		return new ModelAndView("Sides/Spar/spar_buchungen");
 	}
 
