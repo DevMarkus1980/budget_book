@@ -3,13 +3,12 @@ package de.struma.budget_book.controller;
 import de.struma.budget_book.model.SparkaufBuchungsModel;
 import de.struma.budget_book.service.SparBuchungsService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @Slf4j
-@RequestMapping(value = {"/spar/"})
-@RestController
+@Controller
 public class SparController {
 
 	SparBuchungsService sparBuchungsService;
@@ -18,59 +17,69 @@ public class SparController {
 	}
 
 	// Create
-	@PostMapping
-	public ModelAndView saveHome(Model model, @ModelAttribute SparkaufBuchungsModel newEntry) {
+	@PostMapping(value = {"/spar/"})
+	public String saveHome(Model model, @ModelAttribute SparkaufBuchungsModel newEntry) {
 
 		sparBuchungsService.createBuchung(newEntry);
-		return new ModelAndView("redirect:/spar/");
-	}
+		return "redirect:/spar/";
+}
 
 	// Read
-	@GetMapping
-	public ModelAndView showHome(Model model) {
+	@GetMapping(value = {"/spar/"})
+	public String showHome(Model model) {
 
 		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
 		model.addAttribute("view",  "newEntry");
 		model.addAttribute("newEntry",  new SparkaufBuchungsModel());
-		return new ModelAndView("Sides/Spar/spar_buchungen");
+		return "Sides/Spar/spar_buchungen";
 	}
 
-	@GetMapping(value = "/lager/")
-	public ModelAndView showLager(Model model) {
+	@GetMapping(value = "/spar/lager/")
+	public String showLager(Model model) {
 
 		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
 		model.addAttribute("view",  "lager");
-		return new ModelAndView("Sides/Spar/spar_buchungen");
+		return "Sides/Spar/spar_buchungen";
 	}
-	@GetMapping(value = "/inventur/")
-	public ModelAndView showInventur(Model model) {
+	@GetMapping(value = "/spar/inventur/")
+	public String showInventur(Model model) {
 
 		model.addAttribute("entries", sparBuchungsService.getInventar());
 		model.addAttribute("view",  "inventur");
-		return new ModelAndView("Sides/Spar/spar_buchungen");
+		return "Sides/Spar/spar_buchungen";
 	}
-	@GetMapping(value = "/inventur/plus/{id}")
-	public ModelAndView plusProduct(Model model, @PathVariable(name = "id") Long id) {
+	@GetMapping(value = "/spar/inventur/plus/{id}")
+	public String plusProduct(Model model, @PathVariable(name = "id") Long id) {
 		sparBuchungsService.plusProduct(id);
 		model.addAttribute("entries", sparBuchungsService.getInventar());
 		model.addAttribute("view",  "inventur");
-		return new ModelAndView("redirect:");
+		return "redirect:/spar/inventur/";
 	}
-	@GetMapping(value = "/inventur/minus/{id}")
-	public ModelAndView minusProduct(Model model, @PathVariable(name = "id") Long id) {
+	@GetMapping(value = "/spar/inventur/minus/{id}")
+	public String minusProduct(Model model, @PathVariable(name = "id") Long id) {
 		sparBuchungsService.minusProduct(id);
 		model.addAttribute("entries", sparBuchungsService.getInventar());
 		model.addAttribute("view",  "inventur");
-		return new ModelAndView("redirect:/spar/inventur/");
+		return "redirect:/spar/inventur/";
 	}
 
 	// Update
 
+	@GetMapping("/spar/lager/edit/{id}")
+	public String showUpdateForm(@PathVariable(name = "id") Long id,
+								 Model model) {
+		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
+		model.addAttribute("view",  "editEntry");
+		model.addAttribute("newEntry",  sparBuchungsService.getSparbuchungByID(id));
+
+		return "Sides/Spar/spar_buchungen";
+	}
+
 	// Delete
-	@RequestMapping(value = "/delete/{id}")
-	public ModelAndView deleteBuchung(@PathVariable(name = "id") Long id){
+	@RequestMapping(value = "/spar/delete/{id}")
+	public String deleteBuchung(@PathVariable(name = "id") Long id){
 		sparBuchungsService.deleteBuchung(id);
-		return new ModelAndView("redirect:/spar/");
+		return "redirect:/spar/";
 	}
 
 

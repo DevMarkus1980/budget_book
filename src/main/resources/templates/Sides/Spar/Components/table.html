@@ -15,12 +15,12 @@
             <th>MHD</th>
             <th th:if="${view != 'inventur'}">EK-Preis</th>
             <th>L-Preis</th>
-            <th>Extra</th>
+            <th th:if="${view == 'lager'}">Extra</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="entry : ${entries}">
-            <td th:if="${view == 'lager'}"><span th:text="${entry.mengeLager}"></span></td>
+            <td><span th:text="${entry.mengeLager}"></span></td>
             <td th:if="${view == 'inventur'}" >
                 <button class="ms-2 me-2 p-1 rounded btn btn-outline-danger indigo-300 btn-lg text-uppercase fw-bolder"
                         th:onclick="|window.location.href='@{/spar/inventur/plus/__${entry.id}__}'|" type="button"><i class="bi bi-plus-square"></i>
@@ -35,7 +35,10 @@
             <td><span th:text="${entry.mHDDate}"></span></td>
             <td th:if="${view != 'inventur'}"><span th:text="${entry.einkaufsPreis}"></span> € </td>
             <td><span th:text="${entry.normalPreis}"></span> € </td>
-            <td><a th:href="@{delete/__${entry.id}__}" class="btn btn-danger">Delete</a></td>
+            <td th:if="${view == 'lager'}">
+                <a th:href="@{delete/__${entry.id}__}" class="btn btn-danger me-2">Delete</a>
+                <a th:href="@{edit/__${entry.id}__}" class="btn btn-warning">Edit</a>
+            </td>
 
         </tbody>
     </table>

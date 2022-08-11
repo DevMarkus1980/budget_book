@@ -66,4 +66,9 @@ public class SparBuchungsService {
             sparkaufBuchungsRepository.save(buchung);
         }
     }
+
+    public SparkaufBuchungsModel getSparbuchungByID(Long id) {
+        SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
+        return buchung;
+    }
 }
