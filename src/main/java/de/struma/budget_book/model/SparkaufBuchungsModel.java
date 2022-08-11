@@ -17,10 +17,15 @@ public class SparkaufBuchungsModel {
     String produkt;
     Double menge;
     Double mengeLager;
+    Double kalkulatorischerJahresverbrauch;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate buyDate = LocalDate.now();
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDate mHDDate = LocalDate.now().plusWeeks(2);
+    LocalDate mHDDate = LocalDate.now().plusMonths(6);
+
+    // Noch nicht sicher ob ich das brauche
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    LocalDate emptyDate;
 
     Double einkaufsPreis;
     Double normalPreis;
@@ -59,6 +64,22 @@ public class SparkaufBuchungsModel {
             dateAsString = mHDDate.toString();
         }
         return dateAsString;
+    }
+
+    public String getEmptyDate() {
+        String dateAsString = "";
+        if (emptyDate != null) {
+            dateAsString = emptyDate.toString();
+        }
+        return dateAsString;
+    }
+
+    public void setEmptyDate(String date) {
+        if (!date.equals("")) {
+            this.emptyDate = LocalDate.parse(date);
+        } else {
+            this.emptyDate = null;
+        }
     }
 
 }
