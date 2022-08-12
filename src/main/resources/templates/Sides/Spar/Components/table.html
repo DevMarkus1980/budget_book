@@ -20,7 +20,7 @@
         </thead>
         <tbody>
         <tr th:each="entry : ${entries}">
-            <td><span th:text="${entry.mengeLager}"></span></td>
+            <td th:if="${view != 'inventur'}"><span th:text="${entry.mengeLager}"></span></td>
             <td th:if="${view == 'inventur'}" >
                 <button class="ms-2 me-2 p-1 rounded btn btn-outline-danger indigo-300 btn-lg text-uppercase fw-bolder"
                         th:onclick="|window.location.href='@{/spar/inventur/plus/__${entry.id}__}'|" type="button"><i class="bi bi-plus-square"></i>

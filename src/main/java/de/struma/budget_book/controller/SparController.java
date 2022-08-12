@@ -20,8 +20,14 @@ public class SparController {
 	@PostMapping(value = {"/spar/"})
 	public String saveHome(Model model, @ModelAttribute SparkaufBuchungsModel newEntry) {
 
+		String redirect = "";
+		if(newEntry.getId() == null)
+			redirect = "redirect:/spar/";
+		else
+			redirect = "redirect:/spar/lager/";
+
 		sparBuchungsService.createBuchung(newEntry);
-		return "redirect:/spar/";
+		return redirect;
 }
 
 	// Read
@@ -76,10 +82,10 @@ public class SparController {
 	}
 
 	// Delete
-	@RequestMapping(value = "/spar/delete/{id}")
+	@RequestMapping(value = "/spar/lager/delete/{id}")
 	public String deleteBuchung(@PathVariable(name = "id") Long id){
 		sparBuchungsService.deleteBuchung(id);
-		return "redirect:/spar/";
+		return "redirect:/spar/lager/";
 	}
 
 

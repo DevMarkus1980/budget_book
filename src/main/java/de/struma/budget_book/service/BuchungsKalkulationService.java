@@ -39,7 +39,17 @@ public class BuchungsKalkulationService {
         return summe;
     }
 
+    public double getEinsparungAktuellesJahr() {
+        double summe = 0.0;
+        LocalDate firstDay = LocalDate.now().with(firstDayOfYear());
+        List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findByMengeLagerNotNull();
+        for (SparkaufBuchungsModel einsparung : alleEinsparungen) {
+            if(firstDay.isBefore(LocalDate.parse(einsparung.getBuyDate())))
+                summe = summe + ((einsparung.getNormalPreis() - einsparung.getEinkaufsPreis())* einsparung.getMenge());
 
+        }
+        return summe;
+    }
 
 
     public double getkalkulatorischeEinsparungJahr() {

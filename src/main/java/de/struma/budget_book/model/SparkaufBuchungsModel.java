@@ -12,7 +12,7 @@ public class SparkaufBuchungsModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     @Column(name="Spar_ID")
-    long id;
+    Long id;
 
     String produkt;
     Double menge;
