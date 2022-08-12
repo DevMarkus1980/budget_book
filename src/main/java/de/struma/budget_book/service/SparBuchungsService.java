@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.time.temporal.ChronoUnit;
+
+import static java.time.temporal.TemporalAdjusters.firstDayOfYear;
 import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 @Slf4j
 @Service
@@ -82,16 +84,20 @@ public class SparBuchungsService {
 
         LocalDate fruesteBuchung = LocalDate.now();
         LocalDate lastDay = LocalDate.now().with(lastDayOfYear());
+        LocalDate firstDay = LocalDate.now().with(firstDayOfYear());
 
         List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findAll();
         for (SparkaufBuchungsModel einsparung : alleEinsparungen) {
+
             if(fruesteBuchung.isAfter(LocalDate.parse(einsparung.getBuyDate())))
                 fruesteBuchung = LocalDate.parse(einsparung.getBuyDate());
-            summe = summe + ((einsparung.getNormalPreis() - einsparung.getEinkaufsPreis())* einsparung.getMenge());
+            if(firstDay.isBefore(LocalDate.parse(einsparung.getBuyDate())))
+                summe = summe + ((einsparung.getNormalPreis() - einsparung.getEinkaufsPreis())* einsparung.getMenge());
         }
         tageSeitErsteBuchung = ChronoUnit.DAYS.between(fruesteBuchung, LocalDate.now());
         tageBisEndeJahres = ChronoUnit.DAYS.between(LocalDate.now(), lastDay);
+        double kalkBisEndeJahres = (summe / tageSeitErsteBuchung) * tageBisEndeJahres;
 
-        return (summe / tageSeitErsteBuchung) * tageBisEndeJahres;
+        return kalkBisEndeJahres + summe;
     }
 }
