@@ -8,9 +8,11 @@
 
 	<div class="d-block p-4 bg-secondary bg-gradient text-white">
 		<div class="text-uppercase fw-bolder">Warenbestand:
-			<span th:utext="${#numbers.formatDecimal(allMoneySavings == null ? 0 : totalInventory, 0, 2)}"></span> € </div>
+			<span th:utext="${#numbers.formatDecimal(totalInventory == null ? 0 : totalInventory, 0, 2)}"></span> € </div>
 		<div class=" text-uppercase fw-bolder">Eingespart:
 			<span th:utext="${#numbers.formatDecimal(allMoneySavings == null ? 0 : allMoneySavings, 0, 2)}"></span> € </div>
+		<div class=" text-uppercase fw-bolder">Planmäßige Jahres Einsparungen:
+			<span th:utext="${#numbers.formatDecimal(calkSavesYear == null ? 0 : calkSavesYear, 0, 2)}"></span> € </div>
 	</div>
 
 	<img src="logo.png" class="m-3 rounded mx-auto d-block" width="200" height="200">

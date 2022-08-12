@@ -20,6 +20,7 @@ public class MainController {
 	public String showHome(Model model) {
 		model.addAttribute("allMoneySavings", sparBuchungsService.getAlleEinsparungenInsgesamt());
 		model.addAttribute("totalInventory", sparBuchungsService.getWertWarenbestand());
+		model.addAttribute("calkSavesYear", sparBuchungsService.getkalkulatorischeEinsparungJahr());
 		return "Sides/Home/index";
 	}
 	

@@ -5,7 +5,10 @@ import de.struma.budget_book.repository.SparkaufBuchungsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.time.temporal.ChronoUnit;
+import static java.time.temporal.TemporalAdjusters.lastDayOfYear;
 @Slf4j
 @Service
 public class SparBuchungsService {
@@ -70,5 +73,25 @@ public class SparBuchungsService {
     public SparkaufBuchungsModel getSparbuchungByID(Long id) {
         SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
         return buchung;
+    }
+
+    public double getkalkulatorischeEinsparungJahr() {
+        double summe = 0.0;
+        long tageSeitErsteBuchung = 0;
+        long tageBisEndeJahres = 0;
+
+        LocalDate fruesteBuchung = LocalDate.now();
+        LocalDate lastDay = LocalDate.now().with(lastDayOfYear());
+
+        List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findAll();
+        for (SparkaufBuchungsModel einsparung : alleEinsparungen) {
+            if(fruesteBuchung.isAfter(LocalDate.parse(einsparung.getBuyDate())))
+                fruesteBuchung = LocalDate.parse(einsparung.getBuyDate());
+            summe = summe + ((einsparung.getNormalPreis() - einsparung.getEinkaufsPreis())* einsparung.getMenge());
+        }
+        tageSeitErsteBuchung = ChronoUnit.DAYS.between(fruesteBuchung, LocalDate.now());
+        tageBisEndeJahres = ChronoUnit.DAYS.between(LocalDate.now(), lastDay);
+
+        return (summe / tageSeitErsteBuchung) * tageBisEndeJahres;
     }
 }
