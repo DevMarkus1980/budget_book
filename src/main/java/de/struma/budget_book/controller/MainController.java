@@ -1,6 +1,6 @@
 package de.struma.budget_book.controller;
 
-import de.struma.budget_book.service.SparBuchungsService;
+import de.struma.budget_book.service.BuchungsKalkulationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-	SparBuchungsService sparBuchungsService;
+	BuchungsKalkulationService buchungsKalkulationService;
 
-	public MainController(SparBuchungsService sparBuchungsService) {
-		this.sparBuchungsService = sparBuchungsService;
+	public MainController(BuchungsKalkulationService buchungsKalkulationService) {
+		this.buchungsKalkulationService = buchungsKalkulationService;
 	}
 
 	@GetMapping(value = {"/home", "/"})
 	public String showHome(Model model) {
-		model.addAttribute("allMoneySavings", sparBuchungsService.getAlleEinsparungenInsgesamt());
-		model.addAttribute("totalInventory", sparBuchungsService.getWertWarenbestand());
-		model.addAttribute("calkSavesYear", sparBuchungsService.getkalkulatorischeEinsparungJahr());
+		model.addAttribute("allMoneySavings", buchungsKalkulationService.getAlleEinsparungenInsgesamt());
+		model.addAttribute("totalInventory", buchungsKalkulationService.getWertWarenbestand());
+		model.addAttribute("calkSavesYear", buchungsKalkulationService.getkalkulatorischeEinsparungJahr());
 		return "Sides/Home/index";
 	}
 	
