@@ -39,7 +39,7 @@ public class BuchungsKalkulationService {
         return summe;
     }
 
-    public double getEinsparungAktuellesJahr() {
+    public double getEinsparungAktuellesJahr() {  // Noch nicht implementiert
         double summe = 0.0;
         LocalDate firstDay = LocalDate.now().with(firstDayOfYear());
         List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findByMengeLagerNotNull();
@@ -74,5 +74,19 @@ public class BuchungsKalkulationService {
         double kalkBisEndeJahres = (summe / tageSeitErsteBuchung) * tageBisEndeJahres;
 
         return kalkBisEndeJahres + summe;
+    }
+    public Double getKalkulatorischeJahresMenge(SparkaufBuchungsModel sparkaufBuchungsModel) {
+        double summe = 0.0;
+
+        LocalDate fruesteBuchung = LocalDate.now();
+        LocalDate lastDay = LocalDate.now().with(lastDayOfYear());
+        LocalDate firstDay = LocalDate.now().with(firstDayOfYear());
+
+        double mengeDiff = sparkaufBuchungsModel.getMenge()-sparkaufBuchungsModel.getMengeLager();
+        long tageDesVerbrauchs = ChronoUnit.DAYS.between(
+                                                    LocalDate.parse(sparkaufBuchungsModel.getBuyDate()),
+                                                    LocalDate.parse(sparkaufBuchungsModel.getUpdateDate()));
+        return (mengeDiff / tageDesVerbrauchs) * 360;
+
     }
 }

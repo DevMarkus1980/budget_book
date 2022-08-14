@@ -11,6 +11,7 @@ import java.util.List;
 public class SparBuchungsService {
 
     SparkaufBuchungsRepository sparkaufBuchungsRepository;
+    BuchungsKalkulationService buchungsKalkulationService;
 
 
     public SparBuchungsService(SparkaufBuchungsRepository sparkaufBuchungsRepository) {
@@ -54,9 +55,7 @@ public class SparBuchungsService {
     }
 
     public void setCalkYearConsum(SparkaufBuchungsModel newEntry) {
-        if(newEntry.getUpdateDate() != null) {
-
-
-        }
+        Double temp = buchungsKalkulationService.getKalkulatorischeJahresMenge(newEntry);
+        newEntry.setKalkulatorischerJahresverbrauch(temp);
     }
 }
