@@ -52,7 +52,7 @@ public class BuchungsKalkulationService {
     }
 
 
-    public double getkalkulatorischeEinsparungJahr() {
+    public double getKalkulatorischeEinsparungJahr() {
         double summe = 0.0;
         long tageSeitErsteBuchung = 0;
         long tageBisEndeJahres = 0;

@@ -25,7 +25,7 @@ public class SparkaufBuchungsModel {
 
     // Noch nicht sicher ob ich das brauche
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDate emptyDate;
+    LocalDate updateDate;
 
     Double einkaufsPreis;
     Double normalPreis;
@@ -66,19 +66,19 @@ public class SparkaufBuchungsModel {
         return dateAsString;
     }
 
-    public String getEmptyDate() {
+    public String getUpdateDate() {
         String dateAsString = "";
-        if (emptyDate != null) {
-            dateAsString = emptyDate.toString();
+        if (updateDate != null) {
+            dateAsString = updateDate.toString();
         }
         return dateAsString;
     }
 
-    public void setEmptyDate(String date) {
+    public void setUpdateDate(String date) {
         if (!date.equals("")) {
-            this.emptyDate = LocalDate.parse(date);
+            this.updateDate = LocalDate.parse(date);
         } else {
-            this.emptyDate = null;
+            this.updateDate = null;
         }
     }
 

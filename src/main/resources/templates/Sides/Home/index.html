@@ -11,7 +11,7 @@
 			<span th:utext="${#numbers.formatDecimal(totalInventory == null ? 0 : totalInventory, 0, 2)}"></span> € </div>
 		<div class=" text-uppercase fw-bolder">Eingespart:
 			<span th:utext="${#numbers.formatDecimal(allMoneySavings == null ? 0 : allMoneySavings, 0, 2)}"></span> € </div>
-		<div class=" text-uppercase fw-bolder">Planmäßige Jahres Einsparungen:
+		<div class=" text-uppercase fw-bolder">Jahresersparnis/Plan:
 			<span th:utext="${#numbers.formatDecimal(calkSavesYear == null ? 0 : calkSavesYear, 0, 2)}"></span> € </div>
 	</div>
 
@@ -27,6 +27,7 @@
 			type="button">Haushalt
 		</button>
 	</div>
+
 
 </body>
 </html>

@@ -53,4 +53,10 @@ public class SparBuchungsService {
         return buchung;
     }
 
+    public void setCalkYearConsum(SparkaufBuchungsModel newEntry) {
+        if(newEntry.getUpdateDate() != null) {
+
+
+        }
+    }
 }

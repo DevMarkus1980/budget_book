@@ -23,8 +23,10 @@ public class SparController {
 		String redirect = "";
 		if(newEntry.getId() == null)
 			redirect = "redirect:/spar/";
-		else
+		else{
+			sparBuchungsService.setCalkYearConsum(newEntry);
 			redirect = "redirect:/spar/lager/";
+		}
 
 		sparBuchungsService.createBuchung(newEntry);
 		return redirect;
