@@ -19,7 +19,8 @@ public class SparController {
 
 	// Create
 	@PostMapping(value = {"/spar/"})
-	public String saveHome(Model model, @ModelAttribute SparkaufBuchungsModel newEntry) {
+	public String saveHome(Model model,
+						   @ModelAttribute SparkaufBuchungsModel newEntry) {
 
 		String redirect = "";
 		if(newEntry.getId() == null)
