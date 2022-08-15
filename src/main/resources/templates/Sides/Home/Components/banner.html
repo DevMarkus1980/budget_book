@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="d-block p-4 bg-secondary bg-gradient text-white"  th:fragment="banner">
+    <div class="text-uppercase fw-bolder"
+         data-bs-toggle="tooltip" data-bs-placement="right"
+         title="Der Wert des Aktuellen Warenbestandes "> Warenbestand:
+        <span th:utext="${#numbers.formatDecimal(totalInventory == null ? 0 : totalInventory, 0, 2)}"></span> € </div>
+
+    <div class=" text-uppercase fw-bolder"
+         data-bs-toggle="tooltip" data-bs-placement="right"
+         title="Alle Einsparungen seit begin der Aufzeichnung "> Eingespart:
+        <span th:utext="${#numbers.formatDecimal(allMoneySavings == null ? 0 : allMoneySavings, 0, 2)}"></span> € </div>
+
+    <div class=" text-uppercase fw-bolder"
+         data-bs-toggle="tooltip" data-bs-placement="right"
+         title="Bei gleichbleibendem Einkaufsverhalten, könnte bis Ende des Jahres folgende Summe eingespart werden können  "> Jahresersparnis/Plan:
+        <span th:utext="${#numbers.formatDecimal(calkSavesYear == null ? 0 : calkSavesYear, 0, 2)}"></span> € </div>
+</div>

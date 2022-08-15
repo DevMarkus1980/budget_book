@@ -1,33 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="Components/head :: head">
-	<title> home </title>
+	<title> Home </title>
 </head>
 
 <body>
 
-	<div class="d-block p-4 bg-secondary bg-gradient text-white">
-		<div class="text-uppercase fw-bolder">Warenbestand:
-			<span th:utext="${#numbers.formatDecimal(totalInventory == null ? 0 : totalInventory, 0, 2)}"></span> € </div>
-		<div class=" text-uppercase fw-bolder">Eingespart:
-			<span th:utext="${#numbers.formatDecimal(allMoneySavings == null ? 0 : allMoneySavings, 0, 2)}"></span> € </div>
-		<div class=" text-uppercase fw-bolder">Jahresersparnis/Plan:
-			<span th:utext="${#numbers.formatDecimal(calkSavesYear == null ? 0 : calkSavesYear, 0, 2)}"></span> € </div>
-	</div>
-
-	<img src="logo.png" class="m-3 rounded mx-auto d-block" width="200" height="200">
-	<div class="d-grid gap-2 m-5 align-items-center">
-		<button class="me-1 p-3 rounded btn btn-outline-secondary btn-lg text-uppercase fw-bolder"
-			th:onclick="|window.location.href='@{/spar/}'|"
-			type="button">Sparkauf
-		</button>
-		<button class="me-1 ps-2 pe-2 rounded btn btn-outline-primary-secondary btn-lg text-uppercase fw-bolder text-light"
-			th:classappend="${#httpServletRequest.getRequestURI().startsWith('/logs/logs_all_by_status') ? 'active':''}"
-			th:onclick="|window.location.href='@{/logs/logs_all_by_status?errorStatus=ERROR}'|"
-			type="button">Haushalt
-		</button>
-	</div>
-
+	<div th:insert="Sides/Home/Components/banner :: banner"></div>
+	<div th:insert="Sides/Home/Components/navbar :: navbar"></div>
 
 </body>
 </html>
