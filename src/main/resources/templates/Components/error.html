@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="Components/head :: head">
+    <title> Error </title>
+</head>
+
+<body class="bg-dark text-white ">
+
+    <div>
+    </div>
+    <div class="position-absolute top-50 start-50 translate-middle ">
+	    <img src="error.jpg" height="400" width="500">
+
+	    <h3 class="d-flex justify-content-center" th:if="${placeholdertitle != null}" th:text="*{placeholdertitle}"></h3>
+	    <h5 class="d-flex justify-content-center" th:if="${placeholderbody != null}" th:text="*{placeholderbody}"></h5>
+        <!--
+	            -->
+    </div>			
+</body>
+</html>
