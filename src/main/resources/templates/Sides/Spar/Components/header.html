@@ -13,17 +13,17 @@
 			<button class="ms-1 p-3 rounded btn btn-outline-light text-uppercase fw-bolder"
 					th:classappend="${#httpServletRequest.getRequestURI() == '/spar/' ? 'active':''}"
 					th:onclick="|window.location.href='@{/spar/}'|"
-					type="button">Neu
+					type="button"> Neu
 			</button>
 			<button class="ms-1 p-3 rounded btn btn-outline-light text-uppercase fw-bolder"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/lager/') ? 'active':''}"
 					th:onclick="|window.location.href='@{/spar/lager/}'|"
-					type="button">Lager
+					type="button"> Lager
 			</button>
 			<button class="ms-1 p-3 rounded btn btn-outline-light text-uppercase fw-bolder"
 					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/inventur/') ? 'active':''}"
 					th:onclick="|window.location.href='@{/spar/inventur/}'|"
-					type="button">Inventur
+					type="button"> Abbuchung
 			</button>
 		</div>
 
