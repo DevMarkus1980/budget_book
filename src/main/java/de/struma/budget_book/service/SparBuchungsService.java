@@ -3,6 +3,7 @@ package de.struma.budget_book.service;
 import de.struma.budget_book.model.SparkaufBuchungsModel;
 import de.struma.budget_book.repository.SparkaufBuchungsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +13,8 @@ public class SparBuchungsService {
 
     SparkaufBuchungsRepository sparkaufBuchungsRepository;
 
-
-    public SparBuchungsService(SparkaufBuchungsRepository sparkaufBuchungsRepository) {
+    public SparBuchungsService(SparkaufBuchungsRepository sparkaufBuchungsRepository, BuchungsKalkulationService buchungsKalkulationService) {
+        this.buchungsKalkulationService = buchungsKalkulationService;
         this.sparkaufBuchungsRepository = sparkaufBuchungsRepository;
     }
 

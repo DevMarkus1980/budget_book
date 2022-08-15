@@ -31,8 +31,13 @@ public class SparkaufBuchungsModel {
     Double normalPreis;
 
     public void setMenge(Double menge) {
-        this.menge = menge;
-        this.mengeLager = menge;
+        if(this.mengeLager == null) {
+            this.mengeLager = menge;
+            this.menge = menge;
+        }
+        else{
+            this.mengeLager = menge;
+        }
     }
 
     public String getBuyDate() {

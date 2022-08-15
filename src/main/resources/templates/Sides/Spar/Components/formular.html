@@ -9,8 +9,12 @@
         <div><label class="fw-bolder">Gekauft</label><input id="byed" class="form-control is valid" autocomplete="off" type="date" th:field="*{buyDate}"/></div>
         <div><label class="fw-bolder">Artikel</label><input id="product" class="form-control" required type="text" th:field="*{produkt}"/>
             <div class="invalid-feedback">Der Artikel muss Angeben werden.</div></div>
+
         <div><label class="fw-bolder">Menge</label><input id="menge" class="form-control" required type="text" th:field="*{menge}"/>
             <div class="invalid-feedback">Die Menge muss Angeben werden.</div></div>
+        <div th:if="${view == 'editEntry'}"><label class="fw-bolder">Menge Lager</label><input id="mengeLager" class="form-control" required type="text" th:field="*{mengeLager}"/>
+            <div class="invalid-feedback">Die Menge muss Angeben werden.</div></div>
+
         <div><label class="fw-bolder">MHD</label><input id="mhd" class="form-control" type="date" autocomplete="off" th:field="*{mHDDate}"/></div>
         <div><label class="fw-bolder">EK-Preis</label><input class="form-control" required type="number" min="0.01" max="10000.00" step="0.01" th:field="*{einkaufsPreis}"/></div>
         <div><label class="fw-bolder">Listen-Preis</label><input class="form-control" required type="number" min="0.01" max="10000.00" step="0.01" th:field="*{normalPreis}"/></div>
