@@ -8,7 +8,7 @@
         <thead class="sticky-top bg-white shadow">
         <tr class="">
             <th >Restbestand</th>
-            <th class="d-none d-lg-block" th:if="${view != 'inventur'}">Gekauft</th>
+            <th class="d-sm-none d-lg-block" th:if="${view != 'inventur'}">Gekauft</th>
             <th>Artikel</th>
             <th>Menge</th>
             <th>MHD</th>
@@ -21,7 +21,7 @@
         <tbody>
         <tr th:each="entry : ${entries}">
             <td th:if="${view != 'inventur'}"><span th:text="${entry.mengeLager}"></span></td>
-            <td class="d-none d-lg-block" th:if="${view == 'inventur'}" >
+            <td class="d-sm-none d-lg-block" th:if="${view == 'inventur'}" >
                 <button class="ms-2 me-2 p-1 rounded btn btn-outline-danger indigo-300 btn-lg text-uppercase fw-bolder"
                         th:onclick="|window.location.href='@{/spar/inventur/plus/__${entry.id}__}'|" type="button"><i class="bi bi-plus-square"></i>
                 </button>
@@ -29,13 +29,13 @@
                 <button class="ms-2 p-1 rounded btn btn-outline-success indigo-300 btn-lg text-uppercase fw-bolder"
                         th:onclick="|window.location.href='@{/spar/inventur/minus/__${entry.id}__}'|" type="button"><i class="bi bi-dash-square"></i>
                 </button></td>
-            <td th:if="${view != 'inventur'}"><span th:text="${entry.buyDate}"></span></td>
+            <td class="d-sm-none d-lg-block" th:if="${view != 'inventur'}"><span th:text="${entry.buyDate}"></span></td>
             <td><span th:text="${entry.produkt}"></span></td>
             <td><span th:text="${entry.menge}"></span></td>
             <td><span th:text="${entry.mHDDate}"></span></td>
-            <td class="d-none d-lg-block" th:if="${view != 'inventur'}"><span th:text="${entry.einkaufsPreis}"></span> € </td>
-            <td class="d-none d-lg-block"><span th:text="${entry.normalPreis}"></span> € </td>
-            <td class="d-none d-lg-block" th:if="${view == 'lager'}"><span th:utext="${#numbers.formatDecimal(entry.kalkulatorischerJahresverbrauch == null ? 0 : entry.kalkulatorischerJahresverbrauch, 2, 1)}"></span>
+            <td class="d-sm-none d-lg-block" th:if="${view != 'inventur'}"><span th:text="${entry.einkaufsPreis}"></span> € </td>
+            <td class="d-sm-none d-lg-block" ><span th:text="${entry.normalPreis}"></span> € </td>
+            <td class="d-sm-none d-lg-block" th:if="${view == 'lager'}"><span th:utext="${#numbers.formatDecimal(entry.kalkulatorischerJahresverbrauch == null ? 0 : entry.kalkulatorischerJahresverbrauch, 2, 1)}"></span>
             <td th:if="${view == 'lager'}">
                 <a th:href="@{delete/__${entry.id}__}" class="btn btn-danger me-2">Delete</a>
                 <a th:href="@{edit/__${entry.id}__}" class="btn btn-warning">Edit</a>
