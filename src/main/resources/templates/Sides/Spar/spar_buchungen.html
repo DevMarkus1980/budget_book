@@ -11,8 +11,16 @@
 
 	<div class="m-2">
 
+
 		<div th:if="${view == 'newEntry' || view == 'editEntry'}" class="me-2" th:insert="Sides/Spar/Components/formular :: formular"></div>
-		<div class="mt-2" th:insert="Sides/Spar/Components/table :: table_all"></div>
+
+
+
+
+			<div class="mt-2" th:insert="Sides/Spar/Components/table_xl :: table_all"></div>
+
+
+
 
 	</div>
 </body>
