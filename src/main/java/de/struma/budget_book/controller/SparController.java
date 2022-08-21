@@ -50,6 +50,7 @@ public class SparController {
 		model.addAttribute("view",  "lager");
 		return "Sides/Spar/spar_buchungen";
 	}
+
 	@GetMapping(value = "/spar/inventur/")
 	public String showInventur(Model model) {
 
@@ -57,6 +58,7 @@ public class SparController {
 		model.addAttribute("view",  "inventur");
 		return "Sides/Spar/spar_buchungen";
 	}
+
 	@GetMapping(value = "/spar/inventur/plus/{id}")
 	public String plusProduct(Model model, @PathVariable(name = "id") Long id) {
 		sparBuchungsService.plusProduct(id);
@@ -64,6 +66,7 @@ public class SparController {
 		model.addAttribute("view",  "inventur");
 		return "redirect:/spar/inventur/";
 	}
+
 	@GetMapping(value = "/spar/inventur/minus/{id}")
 	public String minusProduct(Model model, @PathVariable(name = "id") Long id) {
 		sparBuchungsService.minusProduct(id);
@@ -82,6 +85,16 @@ public class SparController {
 		model.addAttribute("newEntry",  sparBuchungsService.getSparbuchungByID(id));
 
 		return "Sides/Spar/spar_buchungen";
+	}
+	@GetMapping("/spar/lager/calc/{id}")
+	public String calcVolumeToBuy(@PathVariable(name = "id") Long id,
+								 Model model) {
+
+		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
+		model.addAttribute("view",  "editEntry");
+		model.addAttribute("newEntry",  sparBuchungsService.getSparbuchungByID(id));
+
+		return "Sides/Spar/calc";
 	}
 
 	// Delete
