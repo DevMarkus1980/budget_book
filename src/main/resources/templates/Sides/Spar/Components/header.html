@@ -1,36 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<div class="header d-block p-4 opacity-75 bg-success bg-gradient text-white" th:fragment="header">
+<div class="header d-block opacity-75 bg-secondary bg-gradient text-white p-2" th:fragment="header">
 
-	<div class="btn-group">
 
-		<button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
-				th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
-				th:onclick="|window.location.href='@{/}'|"
-				type="button"><i class="bi bi-box-arrow-left"></i>
-		</button>
-		<button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
-				th:classappend="${#httpServletRequest.getRequestURI() == '/spar/' ? 'active':''}"
-				th:onclick="|window.location.href='@{/spar/}'|"
-				type="button"> Neu
-		</button>
-		<button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
-				th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/lager/') ? 'active':''}"
-				th:onclick="|window.location.href='@{/spar/lager/}'|"
-				type="button"> Lager
-		</button>
-		<button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
-				th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/inventur/') ? 'active':''}"
-				th:onclick="|window.location.href='@{/spar/inventur/}'|"
-				type="button"> Abbuchung
-		</button>
+	<div class="container">
+		<div class="row">
+			<div class="col-auto me-auto"><div th:insert="Sides/Spar/Components/navbar :: navbar"></div></div>
+			<div class="col-auto"><div th:insert="Components/versionNummer :: version"></div></div>
+		</div>
 	</div>
 
-
-		<div class="me-5">
-			<button title="release" th:text="${@versionsnummer.getVersion()}"
-					type="button" disabled class="btn btn-outline-light btn-sm ms-2"></button>
-		</div>
 
 </div>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="navbar" >
+
+<div class="btn-group">
+
+    <button class="btn btn-outline-light text-uppercase fw-bolder btn-block"
+            th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+            th:onclick="|window.location.href='@{/}'|"
+            type="button"><i class="bi bi-box-arrow-left" style="font-size: 2rem;"></i>
+    </button>
+    <button class="btn btn-outline-light text-uppercase fw-bolder btn-block"
+            th:classappend="${#httpServletRequest.getRequestURI() == '/spar/' ? 'active':''}"
+            th:onclick="|window.location.href='@{/spar/}'|"
+            type="button"><i class="bi bi-plus-lg" style="font-size: 2rem;"></i>
+    </button>
+    <button class="btn btn-outline-light text-uppercase fw-bolder btn-block"
+            th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/lager/') ? 'active':''}"
+            th:onclick="|window.location.href='@{/spar/lager/}'|"
+            type="button"><i class="bi bi-shop-window" style="font-size: 2rem;"></i>
+    </button>
+    <button class="btn btn-outline-light text-uppercase fw-bolder btn-block"
+            th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/inventur/') ? 'active':''}"
+            th:onclick="|window.location.href='@{/spar/inventur/}'|"
+            type="button"><i class="bi bi-layer-forward" style="font-size: 2rem;"></i>
+    </button>
+</div>
+
+</div>

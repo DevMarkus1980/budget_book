@@ -6,12 +6,12 @@
     <!--<table class="display nowrap" style="width:100%">-->
 
     <table id="dataTable" data-page-length='50' data-order='[[0, "asc"]]'
-           class="display nowrap" style="width:100%" >
+           class="display nowrap m-2" style="width:100%" >
 
         <thead class="sticky-top bg-white shadow">
         <tr class="">
-            <th >Restbestand</th>
             <th>Artikel</th>
+            <th >Restbestand</th>
             <th th:if="${view != 'inventur'}">Gekauft</th>
             <th>Menge</th>
             <th>MHD</th>
@@ -24,8 +24,8 @@
 
         <tbody>
         <tr th:each="entry : ${entries}">
-            <td th:if="${view != 'inventur'}"><span th:text="${entry.mengeLager}"></span></td>
             <td><span th:text="${entry.produkt}"></span></td>
+            <td th:if="${view != 'inventur'}"><span th:text="${entry.mengeLager}"></span></td>
             <td th:if="${view == 'inventur'}" >
             <button class="ms-2 me-2 p-1 rounded btn btn-outline-danger indigo-300 btn-lg text-uppercase fw-bolder"
             th:onclick="|window.location.href='@{/spar/inventur/plus/__${entry.id}__}'|" type="button"><i class="bi bi-plus-square"></i>

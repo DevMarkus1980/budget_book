@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+    <div class="me-5 d-flex flex-row-reverse" th:fragment="version">
+        <button title="release" th:text="${@versionsnummer.getVersion()}"
+                type="button" disabled class="btn btn-outline-light btn-sm ms-2"></button>
+    </div>
