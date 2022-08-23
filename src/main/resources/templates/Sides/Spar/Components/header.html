@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<div class="header mt-3 " th:fragment="header">
-	<nav class="navbar ml-auto navbar-center sticky-top ">
+<div class="header d-block p-4 opacity-75 bg-success bg-gradient text-white" th:fragment="header">
 
-		<div>
-			<button class="ms-2 p-3 rounded btn btn-outline-light indigo-300 text-uppercase fw-bolder"
-					th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
-					th:onclick="|window.location.href='@{/}'|"
-					type="button"><i class="bi bi-box-arrow-left"></i>
-			</button>
-			<button class="ms-1 p-3 rounded btn btn-outline-light text-uppercase fw-bolder"
-					th:classappend="${#httpServletRequest.getRequestURI() == '/spar/' ? 'active':''}"
-					th:onclick="|window.location.href='@{/spar/}'|"
-					type="button"> Neu
-			</button>
-			<button class="ms-1 p-3 rounded btn btn-outline-light text-uppercase fw-bolder"
-					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/lager/') ? 'active':''}"
-					th:onclick="|window.location.href='@{/spar/lager/}'|"
-					type="button"> Lager
-			</button>
-			<button class="ms-1 p-3 rounded btn btn-outline-light text-uppercase fw-bolder"
-					th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/inventur/') ? 'active':''}"
-					th:onclick="|window.location.href='@{/spar/inventur/}'|"
-					type="button"> Abbuchung
-			</button>
-		</div>
+	<div class="btn-group">
+
+		<button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+				th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+				th:onclick="|window.location.href='@{/}'|"
+				type="button"><i class="bi bi-box-arrow-left"></i>
+		</button>
+		<button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+				th:classappend="${#httpServletRequest.getRequestURI() == '/spar/' ? 'active':''}"
+				th:onclick="|window.location.href='@{/spar/}'|"
+				type="button"> Neu
+		</button>
+		<button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+				th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/lager/') ? 'active':''}"
+				th:onclick="|window.location.href='@{/spar/lager/}'|"
+				type="button"> Lager
+		</button>
+		<button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+				th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/inventur/') ? 'active':''}"
+				th:onclick="|window.location.href='@{/spar/inventur/}'|"
+				type="button"> Abbuchung
+		</button>
+	</div>
+
 
 		<div class="me-5">
 			<button title="release" th:text="${@versionsnummer.getVersion()}"
 					type="button" disabled class="btn btn-outline-light btn-sm ms-2"></button>
 		</div>
 
-	</nav>
 </div>
