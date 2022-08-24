@@ -3,7 +3,6 @@ package de.struma.budget_book.service;
 import de.struma.budget_book.model.SparkaufBuchungsModel;
 import de.struma.budget_book.repository.SparkaufBuchungsRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +38,8 @@ public class SparBuchungsService {
         SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
         if(buchung.getMengeLager() < buchung.getMenge()) {
             buchung.setMengeLager(buchung.getMengeLager() + 1);
+            setCalkYearConsum(buchung);
+            setCalkMissingUntilYearOver(buchung);
             sparkaufBuchungsRepository.save(buchung);
         }
     }
@@ -46,6 +47,8 @@ public class SparBuchungsService {
         SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
         if(buchung.getMengeLager() > 0)  {
             buchung.setMengeLager(buchung.getMengeLager() - 1);
+            setCalkYearConsum(buchung);
+            setCalkMissingUntilYearOver(buchung);
             sparkaufBuchungsRepository.save(buchung);
         }
     }
@@ -55,8 +58,14 @@ public class SparBuchungsService {
         return buchung;
     }
 
+
+    // Kalkulationen
     public void setCalkYearConsum(SparkaufBuchungsModel newEntry) {
         Double temp = buchungsKalkulationService.getKalkulatorischeJahresMenge(newEntry);
         newEntry.setKalkulatorischerJahresverbrauch(temp);
+    }
+    public void setCalkMissingUntilYearOver(SparkaufBuchungsModel newEntry) {
+        Double temp = buchungsKalkulationService.getKalkulatorischeFehlendeMengeBisMHD(newEntry);
+        newEntry.setFehlendeMengeBisMHD(temp);
     }
 }

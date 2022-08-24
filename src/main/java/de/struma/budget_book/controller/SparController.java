@@ -21,11 +21,13 @@ public class SparController {
 	public String saveHome(Model model,
 						   @ModelAttribute SparkaufBuchungsModel newEntry) {
 
+		//TODO: Diese Methode muss sauber in den Service verlagert werden
 		String redirect = "";
 		if(newEntry.getId() == null)
 			redirect = "redirect:/spar/";
 		else{
 			sparBuchungsService.setCalkYearConsum(newEntry);
+			sparBuchungsService.setCalkMissingUntilYearOver(newEntry);
 			redirect = "redirect:/spar/lager/";
 		}
 

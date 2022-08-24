@@ -18,6 +18,7 @@ public class SparkaufBuchungsModel {
     Double menge;
     Double mengeLager;
     Double kalkulatorischerJahresverbrauch;
+    Double fehlendeMengeBisMHD;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate buyDate = LocalDate.now();
     @DateTimeFormat(pattern = "yyyy-MM-dd")

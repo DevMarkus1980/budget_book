@@ -18,6 +18,7 @@
             <th th:if="${view != 'inventur'}">EK-Preis</th>
             <th>L-Preis</th>
             <th th:if="${view == 'lager'}">K-Jahresverbrauch</th>
+            <th th:if="${view == 'lager'}">Fehlmenge/Ende MHD</th>
             <th th:if="${view == 'lager'}">Extra</th>
         </tr>
         </thead>
@@ -40,6 +41,7 @@
             <td th:if="${view != 'inventur'}"><span th:text="${entry.einkaufsPreis}"></span> € </td>
             <td><span th:text="${entry.normalPreis}"></span> € </td>
             <td th:if="${view == 'lager'}"><span th:utext="${#numbers.formatDecimal(entry.kalkulatorischerJahresverbrauch == null ? 0 : entry.kalkulatorischerJahresverbrauch, 2, 1)}"></span>
+            <td th:if="${view == 'lager'}"><span th:utext="${#numbers.formatDecimal(entry.fehlendeMengeBisMHD == null ? 0 : entry.fehlendeMengeBisMHD, 2, 1)}"></span>
             <td th:if="${view == 'lager'}">
                 <a th:href="@{delete/__${entry.id}__}" class="btn btn-danger me-2">Delete</a>
                 <a th:href="@{edit/__${entry.id}__}" class="btn btn-warning">Edit</a>

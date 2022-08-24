@@ -88,4 +88,18 @@ public class BuchungsKalkulationService {
         return (mengeDiff / tageDesVerbrauchs) * 360;
 
     }
+    public Double getKalkulatorischeFehlendeMengeBisMHD(SparkaufBuchungsModel sparkaufBuchungsModel) {
+
+        Double jahresverbrauch = getKalkulatorischeJahresMenge(sparkaufBuchungsModel);
+        Double mengeTagesBedarf = jahresverbrauch /365;
+        long tageDesVerbrauchs = ChronoUnit.DAYS.between(
+                LocalDate.parse(sparkaufBuchungsModel.getUpdateDate()),
+                LocalDate.parse(sparkaufBuchungsModel.getMHDDate()));
+        Double bedarfsMengeBisMHD = mengeTagesBedarf * tageDesVerbrauchs;
+        Double fehlendeMenge = bedarfsMengeBisMHD - sparkaufBuchungsModel.getMengeLager();
+
+        return fehlendeMenge;
+
+    }
+
 }
