@@ -61,11 +61,9 @@ public class SparBuchungsService {
 
     // Kalkulationen
     public void setCalkYearConsum(SparkaufBuchungsModel newEntry) {
-        Double temp = buchungsKalkulationService.getKalkulatorischeJahresMenge(newEntry);
-        newEntry.setKalkulatorischerJahresverbrauch(temp);
+        buchungsKalkulationService.setKalkulatorischeJahresMenge(newEntry);
     }
     public void setCalkMissingUntilYearOver(SparkaufBuchungsModel newEntry) {
-        Double temp = buchungsKalkulationService.getKalkulatorischeFehlendeMengeBisMHD(newEntry);
-        newEntry.setFehlendeMengeBisMHD(temp);
+        buchungsKalkulationService.setKalkulatorischeFehlendeMengeBisMHD(newEntry);
     }
 }

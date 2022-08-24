@@ -18,6 +18,7 @@ public class MainController {
 
 	@GetMapping(value = {"/home", "/"})
 	public String showHome(Model model) {
+		buchungsKalkulationService.initCalkAllEntries();
 
 		model.addAttribute("allMoneySavings", buchungsKalkulationService.getAlleEinsparungenInsgesamt());
 		model.addAttribute("totalInventory", buchungsKalkulationService.getWertWarenbestand());

@@ -75,7 +75,7 @@ public class BuchungsKalkulationService {
 
         return kalkBisEndeJahres + summe;
     }
-    public Double getKalkulatorischeJahresMenge(SparkaufBuchungsModel sparkaufBuchungsModel) {
+    public void setKalkulatorischeJahresMenge(SparkaufBuchungsModel sparkaufBuchungsModel) {
 
         sparkaufBuchungsModel.setUpdateDate(String.valueOf(LocalDate.now().toString()));
         double mengeDiff = sparkaufBuchungsModel.getMenge()-sparkaufBuchungsModel.getMengeLager();
@@ -83,14 +83,14 @@ public class BuchungsKalkulationService {
                                                     LocalDate.parse(sparkaufBuchungsModel.getBuyDate()),
                                                     LocalDate.parse(sparkaufBuchungsModel.getUpdateDate()));
         if(mengeDiff < 1)
-            return 0.0;
-
-        return (mengeDiff / tageDesVerbrauchs) * 360;
+            sparkaufBuchungsModel.setKalkulatorischerJahresverbrauch(0.0);
+        else
+            sparkaufBuchungsModel.setKalkulatorischerJahresverbrauch((mengeDiff / tageDesVerbrauchs) * 360);
 
     }
-    public Double getKalkulatorischeFehlendeMengeBisMHD(SparkaufBuchungsModel sparkaufBuchungsModel) {
+    public void setKalkulatorischeFehlendeMengeBisMHD(SparkaufBuchungsModel sparkaufBuchungsModel) {
 
-        Double jahresverbrauch = getKalkulatorischeJahresMenge(sparkaufBuchungsModel);
+        Double jahresverbrauch = sparkaufBuchungsModel.getKalkulatorischerJahresverbrauch();
         Double mengeTagesBedarf = jahresverbrauch /365;
         long tageDesVerbrauchs = ChronoUnit.DAYS.between(
                 LocalDate.parse(sparkaufBuchungsModel.getUpdateDate()),
@@ -98,7 +98,25 @@ public class BuchungsKalkulationService {
         Double bedarfsMengeBisMHD = mengeTagesBedarf * tageDesVerbrauchs;
         Double fehlendeMenge = bedarfsMengeBisMHD - sparkaufBuchungsModel.getMengeLager();
 
-        return fehlendeMenge;
+        sparkaufBuchungsModel.setFehlendeMengeBisMHD(fehlendeMenge);
+
+    }
+    public void initCalkAllEntries(){
+        List<SparkaufBuchungsModel> updateAll = sparkaufBuchungsRepository.findByMengeLagerNotNull();
+
+        for(SparkaufBuchungsModel entry: updateAll){
+            if(entry.getUpdateDate().isEmpty()){
+                entry.setUpdateDate(String.valueOf(LocalDate.now().toString()));
+            }
+            LocalDate früh = LocalDate.parse(entry.getUpdateDate());
+            LocalDate spät = LocalDate.now();
+
+            if(entry.getMenge() != entry.getMengeLager()){
+                setKalkulatorischeJahresMenge(entry);
+                setKalkulatorischeFehlendeMengeBisMHD(entry);
+            }
+        }
+        sparkaufBuchungsRepository.saveAll(updateAll);
 
     }
 
