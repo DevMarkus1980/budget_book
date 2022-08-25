@@ -41,6 +41,7 @@ public class SparkaufBuchungsModel {
         }
     }
 
+    /*
     public String getBuyDate() {
         String dateAsString = "";
         if (buyDate != null) {
@@ -87,5 +88,5 @@ public class SparkaufBuchungsModel {
             this.updateDate = null;
         }
     }
-
+    */
 }
