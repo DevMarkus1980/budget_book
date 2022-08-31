@@ -101,6 +101,8 @@ public class BuchungsKalkulationService {
         Double bedarfsMengeBisMHD = mengeTagesBedarf * tageDesVerbrauchs;
         Double fehlendeMenge = bedarfsMengeBisMHD - sparkaufBuchungsModel.getMengeLager();
 
+        if(fehlendeMenge<0)
+            fehlendeMenge = 0D;
         sparkaufBuchungsModel.setFehlendeMengeBisMHD(fehlendeMenge);
 
     }
@@ -111,8 +113,6 @@ public class BuchungsKalkulationService {
             if(entry.getUpdateDate() == null){
                 entry.setUpdateDate(LocalDate.now());
             }
-            LocalDate früh = entry.getUpdateDate();
-            LocalDate spät = LocalDate.now();
 
             if(!Objects.equals(entry.getMenge(), entry.getMengeLager())){
                 setKalkulatorischeJahresMenge(entry);
