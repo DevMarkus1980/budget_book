@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="Components/head :: head">
+  <title> Kategorien </title>
+</head>
+
+<body>
+  <div th:insert="Sides/Budget_Book/Kategorie/Components/banner :: banner"></div>
+  <div class="p-4" th:insert="Sides/Budget_Book/Kategorie/Components/table:: kategorien"></div>
+
+  <p>Änderungen vorbehalten</p>
+</body>
+</html>

@@ -1,7 +1,7 @@
-package de.struma.budget_book.controller;
+package de.struma.budget_book.moduls.spar.controller;
 
-import de.struma.budget_book.model.SparkaufBuchungsModel;
-import de.struma.budget_book.service.SparBuchungsService;
+import de.struma.budget_book.moduls.spar.model.SparkaufBuchungsModel;
+import de.struma.budget_book.moduls.spar.service.SparBuchungsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

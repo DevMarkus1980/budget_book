@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="navbar" >
+
+    <div class="btn-group">
+
+        <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+                th:onclick="|window.location.href='@{/budget_book/}'|"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/budget_book/' ? 'active':''}"
+                type="button"><i class="bi bi-house" style="font-size: 2rem;"></i>
+        </button>
+        <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+                th:onclick="|window.location.href='@{/statistik/showAll/}'|"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/statistik/showAll/' ? 'active':''}"
+                type="button"><i class="bi bi-currency-exchange" style="font-size: 2rem;"></i>
+        </button>
+        <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+                th:onclick="|window.location.href='@{/statistik/showThisMonth/}'|"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/statistik/showThisMonth/' ? 'active':''}"
+                type="button"><i class="bi bi-calendar2-month" style="font-size: 2rem;"></i>
+        </button>
+        <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+                th:onclick="|window.location.href='@{/statistik/showThisYear/}'|"
+                th:classappend="${#httpServletRequest.getRequestURI() == '/statistik/showThisYear/' ? 'active':''}"
+                type="button"><i class="bi bi-calendar3" style="font-size: 2rem;"></i>
+        </button>
+
+    </div>
+</div>

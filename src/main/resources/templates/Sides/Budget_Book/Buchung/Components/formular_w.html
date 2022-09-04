@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div  th:fragment="formular">
+
+    <form class="was-validated m-5" method="post" th:action="@{/buchung/neueWiederBuchung/}" th:object="${neueBuchung}" >
+
+        <div th:if="view == 'edit'"><label class="fw-bolder">id</label>
+            <input id="id" class="form-control is valid" autocomplete="off" readonly type="number" th:field="*{id}"/></div>
+
+        <div>
+            <label class="fw-bolder"> Datum des Auftrags </label>
+            <input type="date" th:field="*{datum}" th:text="${#dates.format(datum, 'yyyy-MM-dd')}"
+                   class="form-control is valid"/>
+        </div>
+        <div>
+            <label class="fw-bolder"> Datum der ersten Buchung </label>
+            <input type="date" th:field="*{datumErsteBuchung}" th:text="${#dates.format(datumErsteBuchung, 'yyyy-MM-dd')}"
+                   class="form-control is valid"/>
+        </div>
+        <div>
+            <label class="fw-bolder"> Datum der letzten Buchung (Optional)</label>
+            <input type="date" th:field="*{datumLetzteBuchung}" th:text="${#dates.format(datumLetzteBuchung, 'yyyy-MM-dd')}"
+                   class="form-control is valid"/>
+        </div>
+        <div class="m-1">
+            <label class="fw-bolder "> Wiederholung </label>
+            <select class="form-select" th:field="*{intervalDerBuchung}">
+                <option value="1"> Monatlich </option>
+                <option value="3"> Quartalsmäßig </option>
+                <option value="12"> Jährlich </option>
+            </select>
+        </div>
+
+        <div class="m-1"><label class="fw-bolder">Beschreibung</label>
+            <input id="beschreibung" class="form-control is valid" required autocomplete="off" type="text" th:field="*{beschreibung}"/></div>
+
+        <div class="m-1"><label class="fw-bolder"> Summe </label>
+            <input class="form-control" required type="number" min="0.01" max="10000.00" step="0.01" th:field="*{summe}"/>
+            <div class="invalid-feedback"> Die Summe muss angegeben werden </div></div>
+
+        <div class="m-1">
+            <label class="fw-bolder "> Kategorie </label>
+            <select class="form-select" th:field="*{kategorie}">
+                <option value="Haushalt">Haushalt</option>
+                <option value="Lebensmittel">Lebensmittel</option>
+                <option value="Freizeit">Freizeit</option>
+            </select>
+        </div>
+
+        <div class="m-1">
+            <div class="btn-group col-12 mt-3" role="group" aria-label="Basic radio toggle button group" >
+
+                <input type="radio" class="btn-check col-6" name="btnradio" id="btnradio1"
+                       autocomplete="off" value="true"  th:field="*{transaktion}"  th:checked="${transaktion == true}" >
+                <label class="btn btn-outline-success" for="btnradio1"> Einnahmen </label>
+
+                <input type="radio" class="btn-check col-6" name="btnradio" id="btnradio2"
+                       autocomplete="off"  value="false" th:field="*{transaktion}"  >
+                <label class="btn btn-outline-danger" for="btnradio2"> Ausgaben </label>
+
+            </div>
+
+        </div>
+
+        <div class="btn-group mt-2 me-1 col-12" role="group">
+            <input type="submit" class="btn btn-primary col-6" value="Speichern">
+        </div>
+
+    </form>
+
+</div>

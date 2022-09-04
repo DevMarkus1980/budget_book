@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body >
+
+<div class="table-responsive  m-3 p-4" style="background-color: rgba(0, 0, 0, 0.3);">
+
+    <table id="dataTable" data-page-length='10' data-order='[[0, "desc"]]'
+           class="table table-striped" style="width:100%"  th:fragment="kategorien">
+
+        <thead class="sticky-top bg-dark text-white shadow">
+        <tr class="">
+            <th hidden > ID </th>
+            <th> Name </th>
+            <th> Datum </th>
+        </tr>
+
+        </thead>
+        <tbody class="">
+        <tr th:each="kategorie : ${kategorien}">
+            <td hidden><span th:text="${kategorie.id}"></span></td>
+            <td><span th:text="${kategorie.name}"></span></td>
+            <td><span th:text="${#dates.format(kategorie.erstellDatum, 'dd-MM-yyyy')}"></span></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+</html>

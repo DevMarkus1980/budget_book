@@ -1,4 +1,4 @@
-package de.struma.budget_book.model;
+package de.struma.budget_book.moduls.spar.model;
 
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

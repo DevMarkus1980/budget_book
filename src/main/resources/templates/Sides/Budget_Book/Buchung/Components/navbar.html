@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="navbar" >
+
+    <div class="btn-group">
+
+    <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+            th:onclick="|window.location.href='@{/budget_book/}'|"
+            th:classappend="${#httpServletRequest.getRequestURI() == '/budget_book/' ? 'active':''}"
+            type="button"><i class="bi bi-house" style="font-size: 2rem;"></i>
+    </button>
+    <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+            th:onclick="|window.location.href='@{/buchung/}'|"
+            th:classappend="${#httpServletRequest.getRequestURI() == '/buchung/' ? 'active':''}"
+            type="button"><i class="bi bi-plus-square" style="font-size: 2rem;"></i>
+    </button>
+    <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
+            th:onclick="|window.location.href='@{/buchung/neueWiederBuchung/}'|"
+            th:classappend="${#httpServletRequest.getRequestURI().startsWith('/buchung/neueWiederBuchung/') ? 'active':''}"
+            type="button"><i class="bi bi-arrow-repeat" style="font-size: 2rem;"></i>
+    </button>
+
+    </div>
+</div>

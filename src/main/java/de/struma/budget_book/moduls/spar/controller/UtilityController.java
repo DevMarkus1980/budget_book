@@ -1,4 +1,4 @@
-package de.struma.budget_book.controller;
+package de.struma.budget_book.moduls.spar.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

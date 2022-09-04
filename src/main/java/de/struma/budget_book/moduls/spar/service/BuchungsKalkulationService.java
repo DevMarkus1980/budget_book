@@ -1,7 +1,7 @@
-package de.struma.budget_book.service;
+package de.struma.budget_book.moduls.spar.service;
 
-import de.struma.budget_book.model.SparkaufBuchungsModel;
-import de.struma.budget_book.repository.SparkaufBuchungsRepository;
+import de.struma.budget_book.moduls.spar.model.SparkaufBuchungsModel;
+import de.struma.budget_book.moduls.spar.repository.SparkaufBuchungsRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

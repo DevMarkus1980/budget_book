@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body >
+
+<div class="table-responsive  m-3 p-4" style="background-color: rgba(0, 0, 0, 0.3);">
+    <div th:insert="/Components/header :: myheader"></div>
+    <!-- kleine Tabelle, gestreifte Zeilen zur besseren Lesbarkeit mittig zentrierter Text (X-Achse) -->
+    <table id="dataTable" data-page-length='10' data-order='[[0, "desc"]]'
+           class="table table-striped" style="width:100%"  th:fragment="tabelleninhalt">
+
+        <thead class="sticky-top bg-dark text-white shadow">
+        <tr class="">
+            <th hidden >ID</th>
+            <th>Datum</th>
+            <th>Beschreibung</th>
+            <th>Kategorie</th>
+            <th>Summe</th>
+        </tr>
+
+        </thead>
+        <tbody class="">
+        <tr th:each="buchung : ${all}">
+            <td hidden><span th:text="${buchung.id}"></span></td>
+            <td><span th:text="${#dates.format(buchung.datum, 'dd-MM-yyyy')}"></span></td>
+            <td><span th:text="${buchung.beschreibung}"></span></td>
+            <td><span th:text="${buchung.kategorie}"></span></td>
+            <td>€ <span th:utext="${#numbers.formatDecimal(buchung.summe == null ? 0 : buchung.summe, 0, 2)}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+</html>

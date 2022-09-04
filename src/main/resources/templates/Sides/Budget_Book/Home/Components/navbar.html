@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="navbar" >
+
+<img src="modern.png" class="m-3 rounded mx-auto d-block" width="200" height="200">
+
+<div class="d-grid gap-2 m-5 align-items-center">
+
+    <button class="me-1 p-3 rounded btn btn-outline-secondary btn-lg text-uppercase fw-bolder"
+            th:onclick="|window.location.href='@{/buchung/}'|"
+            type="button"><i class="bi bi-plus-square "></i> Buchung
+    </button>
+    <button class="me-1 p-3 rounded btn btn-outline-secondary btn-lg text-uppercase fw-bolder"
+            th:onclick="|window.location.href='@{/statistik/showAll/}'|"
+            type="button"><i class="bi bi-clipboard-data"></i> Statistik
+    </button>
+    <button class="me-1 p-3 rounded btn btn-outline-secondary btn-lg text-uppercase fw-bolder"
+            th:onclick="|window.location.href='@{/kategorie/showAll/}'|"
+            type="button"><i class="bi bi-tags"></i> Kategorien
+    </button>
+
+</div>
+
+</div>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="Components/head :: head">
+    <title> Statistik </title>
+</head>
+
+<body>
+
+<div th:insert="Sides/Budget_Book/Statistik/Components/banner :: banner_statistik"></div>
+<div class="m-2" th:insert="Sides/Budget_Book/Statistik/Components/table :: tabelleninhalt"></div>
+
+</body>
+</html>

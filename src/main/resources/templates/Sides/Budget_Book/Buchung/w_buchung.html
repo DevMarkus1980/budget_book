@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="Components/head :: head">
+    <title> Wiederkehrende Buchungen </title>
+</head>
+
+<body >
+
+<div>
+    <div th:insert="Sides/Buchung/Components/banner :: banner_buchung"></div>
+    <div  class="m-2" >
+        <div th:insert="Sides/Buchung/Components/formular_w :: formular"></div>
+        <div  th:insert="Sides/Buchung/Components/table :: tabelleninhalt"></div>
+
+    </div>
+
+</div>
+</body>
+
+</html>

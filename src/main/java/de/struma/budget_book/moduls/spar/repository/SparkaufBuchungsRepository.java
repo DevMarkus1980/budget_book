@@ -1,6 +1,6 @@
-package de.struma.budget_book.repository;
+package de.struma.budget_book.moduls.spar.repository;
 
-import de.struma.budget_book.model.SparkaufBuchungsModel;
+import de.struma.budget_book.moduls.spar.model.SparkaufBuchungsModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 
