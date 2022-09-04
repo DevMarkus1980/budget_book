@@ -7,8 +7,8 @@
         <div class="row">
             <div class="col-auto me-auto">
                 <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
-                        th:onclick="|window.location.href='@{/budget_book/}'|"
-                        th:classappend="${#httpServletRequest.getRequestURI() == '/budget_book/' ? 'active':''}"
+                        th:onclick="|window.location.href='@{/}'|"
+                        th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
                         type="button"><i class="bi bi-house" style="font-size: 2rem;"></i>
                 </button>
             </div>

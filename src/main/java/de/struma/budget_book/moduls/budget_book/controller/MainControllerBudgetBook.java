@@ -23,11 +23,9 @@ public class MainControllerBudgetBook {
 	@GetMapping(value = {"/budget_book/"})
 	public String showHome(Model model) {
 
-		//if(!buchungService.getAllBuchung().iterator().hasNext())
-		//	buchungService.setDummiesToTable();
 
 		model.addAttribute("saldo", statisticService.getSaldo());
-		return "Sides/Budget_Book/Home/index";
+		return "Sides/Budget_Book/Home/budget_book";
 	}
 	
 
