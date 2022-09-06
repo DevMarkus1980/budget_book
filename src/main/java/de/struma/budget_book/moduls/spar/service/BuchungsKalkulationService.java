@@ -33,7 +33,7 @@ public class BuchungsKalkulationService {
 
     public double getWertWarenbestand() {
         double summe = 0.0;
-        List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findByMengeLagerNotNull();
+        List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findByMengeLagerGreaterThan(0.01);
         for (SparkaufBuchungsModel einsparung : alleEinsparungen) {
             summe = summe + (einsparung.getNormalPreis() * einsparung.getMengeLager());
         }
@@ -43,7 +43,7 @@ public class BuchungsKalkulationService {
     public double getEinsparungAktuellesJahr() {
         double summe = 0.0;
         LocalDate firstDay = LocalDate.now().with(firstDayOfYear());
-        List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findByMengeLagerNotNull();
+        List<SparkaufBuchungsModel> alleEinsparungen = sparkaufBuchungsRepository.findAll();
         for (SparkaufBuchungsModel einsparung : alleEinsparungen) {
             if(firstDay.isBefore(einsparung.getBuyDate()))
                 summe = summe + ((einsparung.getNormalPreis() - einsparung.getEinkaufsPreis())* einsparung.getMenge());
@@ -92,7 +92,7 @@ public class BuchungsKalkulationService {
 
     }
     public void setKalkulatorischeFehlendeMengeBisMHD(SparkaufBuchungsModel sparkaufBuchungsModel) {
-
+// TODO: Nullpointer finden
         Double jahresverbrauch = sparkaufBuchungsModel.getKalkulatorischerJahresverbrauch();
         Double mengeTagesBedarf = jahresverbrauch /365;
         long tageDesVerbrauchs = ChronoUnit.DAYS.between(
@@ -107,7 +107,7 @@ public class BuchungsKalkulationService {
 
     }
     public void initCalkAllEntries(){
-        List<SparkaufBuchungsModel> updateAll = sparkaufBuchungsRepository.findByMengeLagerNotNull();
+        List<SparkaufBuchungsModel> updateAll = sparkaufBuchungsRepository.findByMengeLagerGreaterThan(0.01);
 
         for(SparkaufBuchungsModel entry: updateAll){
             if(entry.getUpdateDate() == null){

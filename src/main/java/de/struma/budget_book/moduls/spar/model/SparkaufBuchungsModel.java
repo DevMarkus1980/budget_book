@@ -17,8 +17,8 @@ public class SparkaufBuchungsModel {
     String produkt;
     Double menge;
     Double mengeLager;
-    Double kalkulatorischerJahresverbrauch;
-    Double fehlendeMengeBisMHD;
+    Double kalkulatorischerJahresverbrauch = 0.0;
+    Double fehlendeMengeBisMHD = 0.0;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate buyDate = LocalDate.now();
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -41,52 +41,4 @@ public class SparkaufBuchungsModel {
         }
     }
 
-    /*
-    public String getBuyDate() {
-        String dateAsString = "";
-        if (buyDate != null) {
-            dateAsString = buyDate.toString();
-        }
-        return dateAsString;
-    }
-
-    public void setBuyDate(String date) {
-        if (!date.equals("")) {
-            this.buyDate = LocalDate.parse(date);
-        } else {
-            this.buyDate = null;
-        }
-    }
-    public void setMHDDate(String date) {
-        if (!date.equals("")) {
-            this.mHDDate = LocalDate.parse(date);
-        } else {
-            this.mHDDate = null;
-        }
-    }
-
-    public String getMHDDate() {
-        String dateAsString = "";
-        if (mHDDate != null) {
-            dateAsString = mHDDate.toString();
-        }
-        return dateAsString;
-    }
-
-    public String getUpdateDate() {
-        String dateAsString = "";
-        if (updateDate != null) {
-            dateAsString = updateDate.toString();
-        }
-        return dateAsString;
-    }
-
-    public void setUpdateDate(String date) {
-        if (!date.equals("")) {
-            this.updateDate = LocalDate.parse(date);
-        } else {
-            this.updateDate = null;
-        }
-    }
-    */
 }

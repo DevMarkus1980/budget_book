@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface SparkaufBuchungsRepository extends JpaRepository<SparkaufBuchungsModel, Long> {
 
-    List<SparkaufBuchungsModel> findByMengeLagerNotNull();
 
-    List<SparkaufBuchungsModel> findByMengeLagerGreaterThan(@NonNull Double mengeLager);
+    List<SparkaufBuchungsModel> findByMengeLagerGreaterThan(Double mengeLager);
+
 
 }

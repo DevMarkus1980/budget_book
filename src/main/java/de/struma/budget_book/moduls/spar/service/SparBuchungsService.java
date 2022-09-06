@@ -19,10 +19,12 @@ public class SparBuchungsService {
     }
 
     public List<SparkaufBuchungsModel> getSparBuchung() {
-        return sparkaufBuchungsRepository.findAll();
+        return sparkaufBuchungsRepository.findByMengeLagerGreaterThan(0.01);
     }
 
     public SparkaufBuchungsModel createBuchung(SparkaufBuchungsModel sparInfo) {
+        //TODO: check warum keine o.o als neue lagerMenge gespeichert werden kann!
+
         return sparkaufBuchungsRepository.save(sparInfo);
     }
 
