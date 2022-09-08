@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<div class="d-block p-4 opacity-50 bg-primary bg-gradient text-white"  th:fragment="banner">
+<div class="d-block p-4 opacity-75 bg-success bg-gradient text-white"  th:fragment="banner">
 
     <div class="container">
         <div class="row">
-            <div class="col-auto me-auto">
-                <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
-                        th:onclick="|window.location.href='@{/}'|"
-                        th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
-                        type="button"><i class="bi bi-house" style="font-size: 2rem;"></i>
-                </button>
-            </div>
+            <div class="col-auto me-auto"><div th:insert="Sides/Budget_Book/Home/Components/navbar_banner :: navbar"></div></div>
             <div class="col-auto"><div th:insert="Components/versionNummer :: version"></div></div>
         </div>
     </div>
+
 
 </div>

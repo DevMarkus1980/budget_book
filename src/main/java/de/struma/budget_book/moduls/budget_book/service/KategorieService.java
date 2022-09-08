@@ -17,10 +17,15 @@ public class KategorieService {
     }
 
     public Iterable<KategorieModel> getAllBuchung() {
-        if(kategorienRepository.count()<1){
+        String[] kategorienDummy = {
+                "Haushalt", "Lebensmittel", "Auto", "Ausbildung", "Freizeit",
+                "Hund","Kind","Kleidung", "FastFood", "BFW", "Ebay"};
+
+        if(kategorienRepository.count() <1){
+            kategorienRepository.deleteAll();
             for(int i = 0 ; i<10; i++){
                 KategorieModel filler = new KategorieModel();
-                filler.setName("Test "+i);
+                filler.setName(kategorienDummy[i]);
                 kategorienRepository.save(filler);
 
             }

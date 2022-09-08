@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface KategorieRepository extends JpaRepository<KategorieModel, Long> {
 
 
-
+    boolean existsByName(String name);
 }
