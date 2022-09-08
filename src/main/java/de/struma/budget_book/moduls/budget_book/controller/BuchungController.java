@@ -3,6 +3,7 @@ package de.struma.budget_book.moduls.budget_book.controller;
 import de.struma.budget_book.moduls.budget_book.model.buchung.BuchungModel;
 import de.struma.budget_book.moduls.budget_book.model.buchung.WiederKehrendeBuchungModel;
 import de.struma.budget_book.moduls.budget_book.service.BuchungService;
+import de.struma.budget_book.moduls.budget_book.service.KategorieService;
 import de.struma.budget_book.moduls.budget_book.service.StatisticService;
 import de.struma.budget_book.moduls.budget_book.service.W_BuchungService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,16 +22,19 @@ public class BuchungController {
     BuchungService buchungService;
     StatisticService statisticService;
     W_BuchungService w_buchungService;
-    public BuchungController(BuchungService buchungService, W_BuchungService w_buchungService, StatisticService statisticService){
+    KategorieService kategorieService;
+    public BuchungController(BuchungService buchungService, W_BuchungService w_buchungService, StatisticService statisticService, KategorieService kategorieService){
         this.buchungService = buchungService;
         this.w_buchungService = w_buchungService;
         this.statisticService = statisticService;
+        this.kategorieService = kategorieService;
     }
 
     // Neue Buchungen
     @GetMapping
     public String showHome(Model model) {
         model.addAttribute("neueBuchung", new BuchungModel());
+        model.addAttribute("kategorien", kategorieService.getAllBuchung());
         model.addAttribute("saldo", statisticService.getSaldo());
         return "Sides/Budget_Book/Buchung/neue_buchung";
     }
