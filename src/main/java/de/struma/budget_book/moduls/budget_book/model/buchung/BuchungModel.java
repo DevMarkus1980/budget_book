@@ -23,7 +23,7 @@ public class BuchungModel {
     LocalDate datum = LocalDate.now();
     Double summe = null;
     String kategorie = null;
-    Boolean transaktion = true;
+    Boolean transaktion = false;
 
     public BuchungModel(String beschreibung, LocalDate datum, Double summe, String kategorie) {
         this.beschreibung = beschreibung;

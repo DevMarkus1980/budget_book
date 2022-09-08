@@ -6,7 +6,7 @@
 
 <body >
 
-	<div th:replace="Sides/Spar/Components/header :: header"></div>
+	<div th:replace="Sides/Spar/Components/banner :: banner"></div>
 	<div th:if="${view == 'newEntry' || view == 'editEntry'}" th:insert="Sides/Spar/Components/formular :: formular"></div>
 	<div th:insert="Sides/Spar/Components/table_xl :: table_all"></div>
 

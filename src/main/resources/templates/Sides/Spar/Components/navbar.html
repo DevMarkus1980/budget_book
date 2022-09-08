@@ -4,11 +4,10 @@
 <div th:fragment="navbar" >
 
 <div class="btn-group">
-
-    <button class="btn btn-outline-light text-uppercase fw-bolder btn-block"
-            th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+    <button class="p-3 btn btn-outline-light text-uppercase fw-bolder btn-block"
             th:onclick="|window.location.href='@{/}'|"
-            type="button"><i class="bi bi-box-arrow-left" style="font-size: 2rem;"></i>
+            th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'active':''}"
+            type="button"><i class="bi bi-house" style="font-size: 2rem;"></i>
     </button>
     <button class="btn btn-outline-light text-uppercase fw-bolder btn-block"
             th:classappend="${#httpServletRequest.getRequestURI() == '/spar/' ? 'active':''}"
