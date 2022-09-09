@@ -5,4 +5,7 @@
     <div class="me-5 d-flex flex-row-reverse" th:fragment="version">
         <button title="release" th:text="${@versionsnummer.getVersion()}"
                 type="button" disabled class="btn btn-outline-light btn-sm ms-2"></button>
+        <button th:if="${saldo != null}" title="Saldo: " th:text="${saldo}"
+                type="button" disabled class="btn btn-outline-warning btn-sm ms-2"></button>
+
     </div>
