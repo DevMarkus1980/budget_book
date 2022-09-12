@@ -1,7 +1,7 @@
 package de.struma.budget_book.moduls.budget_book.controller;
 
+import de.struma.budget_book.Service.AnzeigenService;
 import de.struma.budget_book.moduls.budget_book.service.KategorieService;
-import de.struma.budget_book.moduls.budget_book.service.StatisticService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class KategorieController {
 
     KategorieService kategorieService;
-    StatisticService statisticService;
+    AnzeigenService anzeigenService;
 
-    public KategorieController(KategorieService kategorieService, StatisticService statisticService){
+    public KategorieController(KategorieService kategorieService, AnzeigenService anzeigenService){
         this.kategorieService = kategorieService;
-        this.statisticService = statisticService;
+        this.anzeigenService = anzeigenService;
     }
 
     @GetMapping(value = {"/showAll"})
     public String showHome(Model model) {
 
         model.addAttribute("kategorien", kategorieService.getAllBuchung());
-        model.addAttribute("saldo", statisticService.getSaldo());
+        model.addAttribute("saldo", anzeigenService.getSaldo());
         return "Sides/Budget_Book/Kategorie/kategorie";
     }
 }

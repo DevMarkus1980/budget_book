@@ -34,13 +34,5 @@ public class StatisticService {
                 LocalDate.now().with( TemporalAdjusters.lastDayOfYear()));
 
     }
-    public String getSaldo() {
-        DecimalFormat formatter = new DecimalFormat("#0.00");
-        double temp =  0d;
-        for(BuchungModel counter : findAllInThisMonth()){
-            temp = temp+counter.getSumme();
-        }
-        ;
-        return "Saldo: "+ formatter.format(temp) +"€";
-    }
+
 }

@@ -1,11 +1,9 @@
 package de.struma.budget_book.moduls.budget_book.controller;
 
+import de.struma.budget_book.Service.AnzeigenService;
 import de.struma.budget_book.moduls.budget_book.model.buchung.BuchungModel;
 import de.struma.budget_book.moduls.budget_book.model.buchung.WiederKehrendeBuchungModel;
-import de.struma.budget_book.moduls.budget_book.service.BuchungService;
-import de.struma.budget_book.moduls.budget_book.service.KategorieService;
-import de.struma.budget_book.moduls.budget_book.service.StatisticService;
-import de.struma.budget_book.moduls.budget_book.service.W_BuchungService;
+import de.struma.budget_book.moduls.budget_book.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class BuchungController {
 
     BuchungService buchungService;
-    StatisticService statisticService;
+    AnzeigenService anzeigenService;
     W_BuchungService w_buchungService;
     KategorieService kategorieService;
-    public BuchungController(BuchungService buchungService, W_BuchungService w_buchungService, StatisticService statisticService, KategorieService kategorieService){
+    public BuchungController(BuchungService buchungService, W_BuchungService w_buchungService, AnzeigenService anzeigenService, KategorieService kategorieService){
         this.buchungService = buchungService;
         this.w_buchungService = w_buchungService;
-        this.statisticService = statisticService;
+        this.anzeigenService = anzeigenService;
         this.kategorieService = kategorieService;
     }
 
@@ -35,7 +33,7 @@ public class BuchungController {
     public String showHome(Model model) {
         model.addAttribute("neueBuchung", new BuchungModel());
         model.addAttribute("kategorien", kategorieService.getAllBuchung());
-        model.addAttribute("saldo", statisticService.getSaldo());
+        model.addAttribute("saldo", anzeigenService.getSaldo());
         return "Sides/Budget_Book/Buchung/neue_buchung";
     }
 
@@ -46,7 +44,7 @@ public class BuchungController {
             neueBuchung.setSumme(-neueBuchung.getSumme());
         }
         buchungService.createBuchung(neueBuchung);
-        model.addAttribute("saldo", statisticService.getSaldo());
+        model.addAttribute("saldo", anzeigenService.getSaldo());
         return "redirect:/buchung";
     }
 
@@ -66,7 +64,7 @@ public class BuchungController {
             neueBuchung.setSumme(-neueBuchung.getSumme());
         }
         w_buchungService.createBuchung(neueBuchung);
-        model.addAttribute("saldo", statisticService.getSaldo());
+        model.addAttribute("saldo", anzeigenService.getSaldo());
         return "redirect:/buchung/neueWiederBuchung";
     }
 

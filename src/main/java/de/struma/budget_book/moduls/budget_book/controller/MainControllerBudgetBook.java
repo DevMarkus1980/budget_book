@@ -1,7 +1,7 @@
 package de.struma.budget_book.moduls.budget_book.controller;
 
+import de.struma.budget_book.Service.AnzeigenService;
 import de.struma.budget_book.moduls.budget_book.service.BuchungService;
-import de.struma.budget_book.moduls.budget_book.service.StatisticService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainControllerBudgetBook {
 
 	BuchungService buchungService;
-	StatisticService statisticService;
+	AnzeigenService anzeigenService;
 
 
-	public MainControllerBudgetBook(BuchungService buchungService, StatisticService statisticService) {
+	public MainControllerBudgetBook(BuchungService buchungService, AnzeigenService anzeigenService) {
 		this.buchungService = buchungService;
-		this.statisticService = statisticService;
+		this.anzeigenService = anzeigenService;
 	}
 
 	@GetMapping(value = {"/budget_book/"})
 	public String showHome(Model model) {
 
 
-		model.addAttribute("saldo", statisticService.getSaldo());
+		model.addAttribute("saldo", anzeigenService.getSaldo());
 		return "Sides/Budget_Book/Home/budget_book";
 	}
 	
