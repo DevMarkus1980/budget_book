@@ -23,8 +23,7 @@ public class MainControllerBudgetBook {
 	@GetMapping(value = {"/budget_book/"})
 	public String showHome(Model model) {
 
-
-		model.addAttribute("saldo", anzeigenService.getSaldo());
+		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 		return "Sides/Budget_Book/Home/budget_book";
 	}
 	

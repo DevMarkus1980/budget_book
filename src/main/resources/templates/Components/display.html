@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="d-block ps-4"  th:fragment="display">
+
+    <div th:if="${displayModel.aktuellenWarenBestand != null}"
+         data-bs-toggle="tooltip" data-bs-placement="right"
+         title="Der Wert des Aktuellen Warenbestandes ">
+        <button th:utext="'Warenbestand: '+${#numbers.formatDecimal(displayModel.aktuellenWarenBestand == null ? 0 : displayModel.aktuellenWarenBestand, 0, 2)} +' €'"
+                type="button" disabled class="btn btn-outline-warning btn-sm mt-1"></button>
+    </div>
+    <div th:if="${displayModel.aktuelleEinsparungenLaufendesJahr != null}"
+         data-bs-toggle="tooltip" data-bs-placement="right"
+         title="Einsparungen dieses Jahr">
+        <button th:utext="'Aktuelle Einsparungen: '+${#numbers.formatDecimal(displayModel.aktuelleEinsparungenLaufendesJahr == null ? 0 : displayModel.aktuelleEinsparungenLaufendesJahr, 0, 2)} +' €'"
+                type="button" disabled class="btn btn-outline-warning btn-sm mt-1"></button>
+    </div>
+    <div th:if="${displayModel.aktuelleEinsparungenLaufendesJahr != null}"
+         data-bs-toggle="tooltip" data-bs-placement="right"
+         title="Bei gleichbleibendem Einkaufsverhalten, könnte bis Ende des Jahres folgende Summe eingespart werden können  ">
+        <button th:utext="'Kalk. Einsparungen/Jahr: '+${#numbers.formatDecimal(displayModel.kalkulatorischeEinsparungenLaufendesJahr == null ? 0 : displayModel.kalkulatorischeEinsparungenLaufendesJahr, 0, 2)} +' €'"
+                type="button" disabled class="btn btn-outline-warning btn-sm mt-1"></button>
+    </div>
+
+</div>

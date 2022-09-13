@@ -92,7 +92,7 @@ public class BuchungsKalkulationService {
 
     }
     public void setKalkulatorischeFehlendeMengeBisMHD(SparkaufBuchungsModel sparkaufBuchungsModel) {
-// TODO: Nullpointer finden
+
         Double jahresverbrauch = sparkaufBuchungsModel.getKalkulatorischerJahresverbrauch();
         Double mengeTagesBedarf = jahresverbrauch /365;
         long tageDesVerbrauchs = ChronoUnit.DAYS.between(

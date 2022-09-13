@@ -25,7 +25,7 @@ public class KategorieController {
     public String showHome(Model model) {
 
         model.addAttribute("kategorien", kategorieService.getAllBuchung());
-        model.addAttribute("saldo", anzeigenService.getSaldo());
+        model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return "Sides/Budget_Book/Kategorie/kategorie";
     }
 }

@@ -25,21 +25,21 @@ public class StatisticController {
     @GetMapping(value = {"/showAll"})
     public String showHome(Model model) {
         model.addAttribute("all", statisticService.findAll());
-        model.addAttribute("saldo", anzeigenService.getSaldo());
+        model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return statistikView;
     }
     @GetMapping(value = {"/showThisMonth"})
     public String showThisMonth(Model model) {
 
         model.addAttribute("all", statisticService.findAllInThisMonth());
-        model.addAttribute("saldo", anzeigenService.getSaldo());
+        model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return statistikView;
     }
     @GetMapping(value = {"/showThisYear"})
     public String showThisYear(Model model) {
 
         model.addAttribute("all", statisticService.findAllInThisYear());
-        model.addAttribute("saldo", anzeigenService.getSaldo());
+        model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return statistikView;
     }
 

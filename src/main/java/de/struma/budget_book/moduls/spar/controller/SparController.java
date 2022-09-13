@@ -1,5 +1,6 @@
 package de.struma.budget_book.moduls.spar.controller;
 
+import de.struma.budget_book.Service.AnzeigenService;
 import de.struma.budget_book.moduls.spar.model.SparkaufBuchungsModel;
 import de.struma.budget_book.moduls.spar.service.SparBuchungsService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.*;
 public class SparController {
 
 	SparBuchungsService sparBuchungsService;
-	public SparController(SparBuchungsService sparBuchungsService) {
+	AnzeigenService anzeigenService;
+	public SparController(SparBuchungsService sparBuchungsService, AnzeigenService anzeigenService) {
 		this.sparBuchungsService = sparBuchungsService;
+		this.anzeigenService = anzeigenService;
 	}
 
 	// Create
@@ -32,6 +35,7 @@ public class SparController {
 		}
 
 		sparBuchungsService.createBuchung(newEntry);
+		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 		return redirect;
 }
 
@@ -42,6 +46,7 @@ public class SparController {
 		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
 		model.addAttribute("view",  "newEntry");
 		model.addAttribute("newEntry",  new SparkaufBuchungsModel());
+		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 		return "Sides/Spar/spar_buchungen";
 	}
 
@@ -50,6 +55,7 @@ public class SparController {
 
 		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
 		model.addAttribute("view",  "lager");
+		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 		return "Sides/Spar/spar_buchungen";
 	}
 
@@ -58,6 +64,7 @@ public class SparController {
 
 		model.addAttribute("entries", sparBuchungsService.getInventar());
 		model.addAttribute("view",  "inventur");
+		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 		return "Sides/Spar/spar_buchungen";
 	}
 
@@ -85,7 +92,7 @@ public class SparController {
 		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
 		model.addAttribute("view",  "editEntry");
 		model.addAttribute("newEntry",  sparBuchungsService.getSparbuchungByID(id));
-
+		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 		return "Sides/Spar/spar_buchungen";
 	}
 	@GetMapping("/spar/lager/calc/{id}")
@@ -95,7 +102,7 @@ public class SparController {
 		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
 		model.addAttribute("view",  "editEntry");
 		model.addAttribute("newEntry",  sparBuchungsService.getSparbuchungByID(id));
-
+		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 		return "Sides/Spar/calc";
 	}
 

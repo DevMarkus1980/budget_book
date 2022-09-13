@@ -33,7 +33,7 @@ public class BuchungController {
     public String showHome(Model model) {
         model.addAttribute("neueBuchung", new BuchungModel());
         model.addAttribute("kategorien", kategorieService.getAllBuchung());
-        model.addAttribute("saldo", anzeigenService.getSaldo());
+        model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return "Sides/Budget_Book/Buchung/neue_buchung";
     }
 
@@ -44,7 +44,7 @@ public class BuchungController {
             neueBuchung.setSumme(-neueBuchung.getSumme());
         }
         buchungService.createBuchung(neueBuchung);
-        model.addAttribute("saldo", anzeigenService.getSaldo());
+        model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return "redirect:/buchung";
     }
 
@@ -64,7 +64,7 @@ public class BuchungController {
             neueBuchung.setSumme(-neueBuchung.getSumme());
         }
         w_buchungService.createBuchung(neueBuchung);
-        model.addAttribute("saldo", anzeigenService.getSaldo());
+        model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return "redirect:/buchung/neueWiederBuchung";
     }
 
