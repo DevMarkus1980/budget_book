@@ -23,8 +23,8 @@ public class CronJobService {
     }
 
 
-    @Scheduled(cron = "*/2 * * * *")
-//	@Scheduled(cron = "1 * * * * *")
+//    @Scheduled(cron = "*/2 * * * *")
+	@Scheduled(cron = "1 * * * * *")
     public void testCronJob() throws NamingException {
 
         if (jobsEnabled) {
