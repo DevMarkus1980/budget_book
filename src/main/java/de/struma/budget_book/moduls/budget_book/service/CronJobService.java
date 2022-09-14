@@ -1,6 +1,7 @@
 package de.struma.budget_book.moduls.budget_book.service;
 
 import de.struma.budget_book.moduls.budget_book.model.buchung.BuchungModel;
+import de.struma.budget_book.moduls.budget_book.repository.BuchungRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -17,13 +18,15 @@ public class CronJobService {
     private boolean jobsEnabled;
 
     BuchungService buchungService;
+    BuchungRepository buchungRepository;
 
-    public CronJobService(BuchungService buchungService){
+    public CronJobService(BuchungService buchungService, BuchungRepository buchungRepository){
         this.buchungService = buchungService;
+        this.buchungRepository = buchungRepository;
     }
 
 
-//    @Scheduled(cron = "*/2 * * * *")
+ //   @Scheduled(cron = "0 0 0 * * *", zone = "GMT+2")
 	@Scheduled(cron = "1 * * * * *")
     public void testCronJob() throws NamingException {
 
@@ -31,7 +34,7 @@ public class CronJobService {
             BuchungModel testCronJob = new BuchungModel();
             testCronJob.setSumme(11.99D);
             testCronJob.setDatum(LocalDate.now());
-            testCronJob.setBeschreibung(LocalDateTime.now()+" getestet");
+            testCronJob.setBeschreibung(LocalDateTime.now()+" getestet für Cronjob in der Nacht");
             buchungService.createBuchung(testCronJob);
 
 
