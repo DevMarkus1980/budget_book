@@ -1,11 +1,13 @@
 package de.struma.budget_book.moduls.budget_book.controller;
 
 import de.struma.budget_book.Service.AnzeigenService;
+import de.struma.budget_book.moduls.budget_book.service.BuchungService;
 import de.struma.budget_book.moduls.budget_book.service.StatisticService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
@@ -16,10 +18,12 @@ public class StatisticController {
     String statistikView = "Sides/Budget_Book/Statistik/statistik";
     AnzeigenService anzeigenService;
     StatisticService statisticService;
+    BuchungService buchungService;
 
-    public StatisticController(AnzeigenService anzeigenService, StatisticService statisticService){
+    public StatisticController(AnzeigenService anzeigenService, StatisticService statisticService, BuchungService buchungService){
         this.anzeigenService = anzeigenService;
         this.statisticService = statisticService;
+        this.buchungService =  buchungService;
     }
 
     @GetMapping(value = {"/showAll"})
@@ -41,6 +45,11 @@ public class StatisticController {
         model.addAttribute("all", statisticService.findAllInThisYear());
         model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return statistikView;
+    }
+    @RequestMapping(value = "/showAll/delete/{id}")
+    public String deleteBuchung(@PathVariable(name = "id") Long id){
+        buchungService.deleteBuchung(id);
+        return "redirect:/statistik/showAll";
     }
 
 }

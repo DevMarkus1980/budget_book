@@ -18,17 +18,20 @@ public class BuchungController {
     AnzeigenService anzeigenService;
     W_BuchungService w_buchungService;
     KategorieService kategorieService;
-    public BuchungController(BuchungService buchungService, W_BuchungService w_buchungService, AnzeigenService anzeigenService, KategorieService kategorieService){
+    StatisticService statisticService;
+    public BuchungController(BuchungService buchungService, W_BuchungService w_buchungService, AnzeigenService anzeigenService, KategorieService kategorieService, StatisticService statisticService){
         this.buchungService = buchungService;
         this.w_buchungService = w_buchungService;
         this.anzeigenService = anzeigenService;
         this.kategorieService = kategorieService;
+        this.statisticService = statisticService;
     }
 
     // Neue Buchungen
     @GetMapping
     public String showCreateNewModel(Model model) {
         model.addAttribute("neueBuchung", new BuchungModel());
+        model.addAttribute("all", statisticService.findAllInThisMonth());
         model.addAttribute("kategorien", kategorieService.getAllBuchung());
         model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return "Sides/Budget_Book/Buchung/neue_buchung";
@@ -36,6 +39,7 @@ public class BuchungController {
     @GetMapping(value = {"/edit/{id}"})
     public String showUpdateModel(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("neueBuchung", buchungService.getSparbuchungByID(id));
+        model.addAttribute("all", statisticService.findAllInThisMonth());
         model.addAttribute("kategorien", kategorieService.getAllBuchung());
         model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return "Sides/Budget_Book/Buchung/neue_buchung";
@@ -52,6 +56,12 @@ public class BuchungController {
         model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return "redirect:/buchung";
     }
+    @RequestMapping(value = "/delete/{id}")
+    public String deleteBuchung(@PathVariable(name = "id") Long id){
+        buchungService.deleteBuchung(id);
+        return "redirect:/buchung/";
+    }
+
 
     // Wiederkehrende Buchungen
     @GetMapping(value = {"/neueWiederBuchung"})
@@ -67,7 +77,7 @@ public class BuchungController {
         model.addAttribute("neueBuchung", w_buchungService.getSparbuchungByID(id));
         model.addAttribute("all", (w_buchungService.getAllBuchung()));
         model.addAttribute("displayModel", anzeigenService.updateDisplayView());
-        return "redirect:/buchung/neueWiederBuchung/";
+        return "Sides/Budget_Book/Buchung/w_buchung";
     }
 
     @PostMapping(value = {"/neueWiederBuchung"})
@@ -81,9 +91,9 @@ public class BuchungController {
         return "redirect:/buchung/neueWiederBuchung";
     }
     @RequestMapping(value = "/neueWiederBuchung/delete/{id}")
-    public String deleteBuchung(@PathVariable(name = "id") Long id){
+    public String deleteWiederkehrendeBuchung(@PathVariable(name = "id") Long id){
         w_buchungService.deleteBuchung(id);
-        return "redirect:/buchung/neueWiederBuchung/";
+        return "redirect:/buchung/neueWiederBuchung";
     }
 
 
