@@ -39,11 +39,10 @@ public class W_BuchungService {
     }
 
     public WiederKehrendeBuchungModel getSparbuchungByID(Long id) {
-        WiederKehrendeBuchungModel buchung = new WiederKehrendeBuchungModel();
         if(wiederkehrendeBuchungRepository.findById(id).isPresent())
-            buchung = wiederkehrendeBuchungRepository.findById(id).get();
-        return buchung;
-
+           return  wiederkehrendeBuchungRepository.findById(id).get();
+        log.error("Es konnte keine WiederkehrendeBuchung per ID gefunden werden");
+        return new WiederKehrendeBuchungModel();
     }
 
     // Update

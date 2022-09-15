@@ -18,6 +18,8 @@
             <th>Kategorie</th>
             <th>Summe</th>
             <th>Intervall</th>
+            <th>Funktion</th>
+
         </tr>
 
         </thead>
@@ -31,6 +33,10 @@
             <td><span th:text="${buchung.kategorie}"></span></td>
             <td>€ <span th:utext="${#numbers.formatDecimal(buchung.summe == null ? 0 : buchung.summe, 0, 2)}"></span></td>
             <td><span th:text="${buchung.intervalDerBuchung}"></span></td>
+            <td>
+                <a th:href="@{neueWiederBuchung/delete/__${buchung.id}__}" class="btn btn-danger me-2">Delete</a>
+                <a th:href="@{edit/__${buchung.id}__}" class="btn btn-warning">Edit</a>
+            </td>
         </tr>
         </tbody>
     </table>

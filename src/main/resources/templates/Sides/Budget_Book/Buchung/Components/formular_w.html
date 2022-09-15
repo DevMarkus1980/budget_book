@@ -5,7 +5,7 @@
 
     <form class="was-validated m-5" method="post" th:action="@{/buchung/neueWiederBuchung/}" th:object="${neueBuchung}" >
 
-        <div th:if="view == 'edit'"><label class="fw-bolder">id</label>
+        <div hidden><label class="fw-bolder">id</label>
             <input id="id" class="form-control is valid" autocomplete="off" readonly type="number" th:field="*{id}"/></div>
 
         <div>
