@@ -13,6 +13,7 @@
             <th hidden >ID</th>
             <th>ErsteBuchung</th>
             <th>LetzteBuchung</th>
+            <th>LetzterCronjob</th>
             <th>Beschreibung</th>
             <th>Kategorie</th>
             <th>Summe</th>
@@ -25,6 +26,7 @@
             <td hidden><span th:text="${buchung.id}"></span></td>
             <td><span th:text="${buchung.datumErsteBuchung}"></span></td>
             <td><span th:text="${buchung.datumLetzteBuchung}"></span></td>
+            <td><span th:text="${buchung.zuletztCronJobDurchgefuert}"></span></td>
             <td><span th:text="${buchung.beschreibung}"></span></td>
             <td><span th:text="${buchung.kategorie}"></span></td>
             <td>€ <span th:utext="${#numbers.formatDecimal(buchung.summe == null ? 0 : buchung.summe, 0, 2)}"></span></td>

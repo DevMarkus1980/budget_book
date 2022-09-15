@@ -58,17 +58,16 @@ public class W_BuchungService {
     public void bucheDailyWiederkehrendeBuchungModelToBuchungRepository(LocalDate today) {
 
 
-        List<WiederKehrendeBuchungModel> set = wiederkehrendeBuchungRepository.findByDatumErsteBuchung(today);
+        List<WiederKehrendeBuchungModel> set = wiederkehrendeBuchungRepository.findAll();
 
         if(!set.isEmpty()){
             for(WiederKehrendeBuchungModel e: set){
                 if(checkIfBuchungHeuteGebucht(e, today)){
-
                     continue;
                 }
-
                 // TODO: Was soll er machen wenn mehrere Tage Fehlen
-                else if( e.getDatumLetzteBuchung().isAfter(today.minusDays(1)) &&
+                else if( e.getDatumErsteBuchung().getDayOfMonth() == today.getDayOfMonth() &&
+                        e.getDatumLetzteBuchung().isAfter(today.minusDays(1)) &&
                         e.getZuletztCronJobDurchgefuert().isBefore(today.minusDays(1L))){
 
                     long mengeAnTagenZwischenLetztenCronJobUndHeute= ChronoUnit.DAYS.between(
@@ -90,7 +89,7 @@ public class W_BuchungService {
     }
 
     private boolean checkIfBuchungHeuteGebucht(WiederKehrendeBuchungModel e, LocalDate today) {
-        if(     e.getDatumErsteBuchung().equals(today) &&
+        if(     e.getDatumErsteBuchung().getDayOfMonth() == today.getDayOfMonth() &&
                 e.getDatumLetzteBuchung().isAfter(today.minusDays(1)) &&
                 e.getZuletztCronJobDurchgefuert().equals(today.minusDays(1L))){
 
