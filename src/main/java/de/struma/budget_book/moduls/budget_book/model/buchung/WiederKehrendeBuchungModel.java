@@ -2,17 +2,15 @@ package de.struma.budget_book.moduls.budget_book.model.buchung;
 
 
 import lombok.Data;
+import net.bytebuddy.asm.Advice;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 @Data
 @Entity
 public class WiederKehrendeBuchungModel {
-
-    // Versuche das mal mit einer Vererbung zu lösen.
-    // Dann kann ich die Klasse "WiederKehrendeBuchungModel" verwenden.
-    // ohne das wirin der Primary Tabelle änderungen durchgeführt werden.
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
@@ -21,18 +19,19 @@ public class WiederKehrendeBuchungModel {
 
     String beschreibung = null;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    Date datum = new Date(System.currentTimeMillis());
+    LocalDate datum = LocalDate.now();
     Double summe = null;
     String kategorie = null;
     Boolean transaktion = true;
+    LocalDate zuletztCronJobDurchgefuert = LocalDate.now().minusDays(10L); // minus 1 damit es am selben Tag noch ausgeführt werden kann zum testen
 
     Integer intervalDerBuchung;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    Date datumErsteBuchung = new Date(System.currentTimeMillis());
+    LocalDate datumErsteBuchung = LocalDate.now();
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    Date datumLetzteBuchung;
+    LocalDate datumLetzteBuchung = LocalDate.now();
 
 
 }

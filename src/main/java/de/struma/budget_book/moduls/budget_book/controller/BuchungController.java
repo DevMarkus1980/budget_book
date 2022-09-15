@@ -53,6 +53,7 @@ public class BuchungController {
     public String showWiederKehrendeHome(Model model) {
         model.addAttribute("neueBuchung", new WiederKehrendeBuchungModel());
         model.addAttribute("all", (w_buchungService.getAllBuchung()));
+        model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 
         return "Sides/Budget_Book/Buchung/w_buchung";
     }

@@ -11,20 +11,24 @@
         <thead class="sticky-top bg-dark text-white shadow">
         <tr class="">
             <th hidden >ID</th>
-            <th>Datum</th>
+            <th>ErsteBuchung</th>
+            <th>LetzteBuchung</th>
             <th>Beschreibung</th>
             <th>Kategorie</th>
             <th>Summe</th>
+            <th>Intervall</th>
         </tr>
 
         </thead>
         <tbody class="">
         <tr th:each="buchung : ${all}">
             <td hidden><span th:text="${buchung.id}"></span></td>
-            <td><span th:text="${#dates.format(buchung.datum, 'dd-MM-yyyy')}"></span></td>
+            <td><span th:text="${buchung.datumErsteBuchung}"></span></td>
+            <td><span th:text="${buchung.datumLetzteBuchung}"></span></td>
             <td><span th:text="${buchung.beschreibung}"></span></td>
             <td><span th:text="${buchung.kategorie}"></span></td>
             <td>€ <span th:utext="${#numbers.formatDecimal(buchung.summe == null ? 0 : buchung.summe, 0, 2)}"></span></td>
+            <td><span th:text="${buchung.intervalDerBuchung}"></span></td>
         </tr>
         </tbody>
     </table>
