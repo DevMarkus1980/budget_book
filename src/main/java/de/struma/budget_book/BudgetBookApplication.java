@@ -18,6 +18,6 @@ public class BudgetBookApplication {
 	@PostConstruct
 	public void init(){
 		// Setting Spring Boot SetTimeZone
-		TimeZone.setDefault(TimeZone.getTimeZone("UTC+1"));
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC+3"));
 	}
 }
