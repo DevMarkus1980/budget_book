@@ -37,7 +37,7 @@ public class CronJobService {
         if (jobsEnabled) {
             w_buchungService.bucheDailyWiederkehrendeBuchungModelToBuchungRepository(LocalDate.now());
 
-            //CreateDummyTestEntry();
+            CreateDummyTestEntry();
 
 
         }
@@ -47,6 +47,7 @@ public class CronJobService {
         BuchungModel testCronJob = new BuchungModel();
         testCronJob.setSumme(11.99D);
         testCronJob.setDatum(LocalDate.now());
+        testCronJob.setKategorie("Develop");
         testCronJob.setBeschreibung(LocalDateTime.now()+" getestet für Cronjob in der Nacht");
         buchungService.createBuchung(testCronJob);
     }
