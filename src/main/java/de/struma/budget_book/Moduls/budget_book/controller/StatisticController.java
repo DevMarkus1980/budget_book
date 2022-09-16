@@ -49,7 +49,7 @@ public class StatisticController {
     @RequestMapping(value = "/showAll/delete/{id}")
     public String deleteBuchung(@PathVariable(name = "id") Long id){
         buchungService.deleteBuchung(id);
-        return "redirect:/statistik/showAll";
+        return "redirect:/statistik/showAll/";
     }
 
 }
