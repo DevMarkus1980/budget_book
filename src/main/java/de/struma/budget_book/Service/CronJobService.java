@@ -1,7 +1,9 @@
-package de.struma.budget_book.moduls.budget_book.service;
+package de.struma.budget_book.Service;
 
 import de.struma.budget_book.moduls.budget_book.model.buchung.BuchungModel;
 import de.struma.budget_book.moduls.budget_book.repository.BuchungRepository;
+import de.struma.budget_book.moduls.budget_book.service.BuchungService;
+import de.struma.budget_book.moduls.budget_book.service.W_BuchungService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -28,7 +30,7 @@ public class CronJobService {
     }
 
 
-    @Scheduled(cron = "0 0 0 * * *", zone = "GMT+2")
+    @Scheduled(cron = "0 0 8 * * *", zone = "GMT+2")
 	//@Scheduled(cron = "3 * * * * *")
     public void testCronJob() throws NamingException {
 
