@@ -12,7 +12,7 @@ public class UtilityController {
 	
 	@Bean(name = "versionsnummer") // Gibt einen String zum Frontend über das Interface FrontService
 	public FrontService getVersion() {
-		return () -> "Version "+appVersion;
+		return () -> "v"+appVersion;
 	}
 }
 interface FrontService{
