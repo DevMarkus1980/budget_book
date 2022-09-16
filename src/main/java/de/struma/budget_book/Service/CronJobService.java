@@ -30,7 +30,7 @@ public class CronJobService {
     }
 
 
-    @Scheduled(cron = "0 0 8 * * *", zone = "GMT+2")
+    @Scheduled(cron = "0 15 8 * * *", zone = "GMT+2")
 	//@Scheduled(cron = "3 * * * * *")
     public void testCronJob() throws NamingException {
 
