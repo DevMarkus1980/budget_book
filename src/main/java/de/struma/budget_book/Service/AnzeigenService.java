@@ -1,9 +1,9 @@
 package de.struma.budget_book.Service;
 
 import de.struma.budget_book.Model.DisplayModel;
-import de.struma.budget_book.moduls.budget_book.model.buchung.BuchungModel;
-import de.struma.budget_book.moduls.budget_book.service.StatisticService;
-import de.struma.budget_book.moduls.spar.service.BuchungsKalkulationService;
+import de.struma.budget_book.Moduls.budget_book.model.buchung.BuchungModel;
+import de.struma.budget_book.Moduls.budget_book.service.StatisticService;
+import de.struma.budget_book.Moduls.spar.service.BuchungsKalkulationService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
