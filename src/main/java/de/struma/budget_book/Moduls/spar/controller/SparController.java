@@ -1,5 +1,7 @@
 package de.struma.budget_book.Moduls.spar.controller;
 
+import de.struma.budget_book.Moduls.budget_book.model.buchung.BuchungModel;
+import de.struma.budget_book.Moduls.spar.model.SparkaufBuchungsListDTO;
 import de.struma.budget_book.Service.AnzeigenService;
 import de.struma.budget_book.Moduls.spar.model.SparkaufBuchungsModel;
 import de.struma.budget_book.Moduls.spar.service.SparBuchungsService;
@@ -68,26 +70,26 @@ public class SparController {
 	@GetMapping(value = "/spar/inventur/")
 	public String showInventur(Model model) {
 
-		model.addAttribute("entries", sparBuchungsService.getInventar());
+		SparkaufBuchungsListDTO setDTO = new SparkaufBuchungsListDTO();
+		sparBuchungsService.getInventar().iterator().forEachRemaining(setDTO ::addBuchung);
+		model.addAttribute("form", setDTO);
+		model.addAttribute("path","/spar/inventur/");
+
 		model.addAttribute("view",  "inventur");
 		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
-		return "Sides/Spar/spar_buchungen";
+		return "Sides/Spar/inventur";
 	}
+	@PostMapping(value = {"/spar/inventur/"})
+	public String saveInventur(Model model,
+							   @ModelAttribute SparkaufBuchungsListDTO form) {
 
-	@GetMapping(value = "/spar/inventur/plus/{id}")
-	public String plusProduct(Model model, @PathVariable(name = "id") Long id) {
-		sparBuchungsService.plusProduct(id);
-		model.addAttribute("entries", sparBuchungsService.getInventar());
-		model.addAttribute("view",  "inventur");
-		return "redirect:/spar/inventur/";
-	}
+		sparBuchungsService.saveAllAfterInventur(form.getSetDTO());
 
-	@GetMapping(value = "/spar/inventur/minus/{id}")
-	public String minusProduct(Model model, @PathVariable(name = "id") Long id) {
-		sparBuchungsService.minusProduct(id);
-		model.addAttribute("entries", sparBuchungsService.getInventar());
+
 		model.addAttribute("view",  "inventur");
+		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 		return "redirect:/spar/inventur/";
+
 	}
 
 	// Update

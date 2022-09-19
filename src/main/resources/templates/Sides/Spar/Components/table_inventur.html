@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="table">
+    <script type="text/javascript" th:src="@{/js/header.js}"></script>
+
+        <form action="#" th:action="${path}" th:object="${form}" method="post">
+
+            <fieldset>
+
+                <header>
+                    <nav id="navbar_top" class="mt-2 navbar navbar-expand-lg navbar-dark bg-secondary">
+                        <div class="container">
+                            <div class="collapse navbar-collapse" id="main_nav">
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item me-2"><input type="reset" class="btn btn-warning " id="resetButton" name="reset" th:value="Reset"></li>
+                                    <li class="nav-item"><input type="submit" class="btn btn-success " id="submitButton" th:value="Save"></li>
+                                </ul>
+                            </div> <!-- navbar-collapse.// -->
+                        </div> <!-- container-fluid.// -->
+                    </nav>
+                </header>
+
+                <table class="table table-striped mt-2" style="width:100%"  th:fragment="tabelleninhalt">
+                    <thead class="sticky-top bg-dark text-white shadow">
+                    <tr>
+                        <th hidden> ID </th>
+                        <th> Bestandsmenge </th>
+                        <th> Artikel </th>
+                        <th> MHD </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="entry, itemStat : *{setDTO}">
+
+                        <td hidden ><input th:name="|setDTO[${itemStat.index}].id|" th:value="${entry.getId()}"/></td>
+                        <td class="input-group">
+
+                            <input type="button" class="ms-1 me-1 ps-2 pe-2 rounded btn btn-outline-success text-uppercase fw-bolder" th:onclick="incrementValue([[${entry.id}]])" value="+"/>
+                            <input th:id="'number' + ${entry.id}" th:name="|setDTO[${itemStat.index}].mengeLager|" th:value="${entry.getMengeLager()}" style="width: 60px;"/>
+                            <input type="button" class="ms-1 me-1 ps-2 pe-2 rounded btn btn-outline-danger text-uppercase fw-bolder" th:onclick="decrementValue([[${entry.id}]])" value="-"/>
+                        </td>
+                        <td><span th:text="${entry.produkt}"></span></td>
+                        <td><span th:text="${#temporals.format(entry.mHDDate, 'yyyy-MM-dd')}" ></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </form>
+
+
+    </div>
+
+    </div>
+
+</html>

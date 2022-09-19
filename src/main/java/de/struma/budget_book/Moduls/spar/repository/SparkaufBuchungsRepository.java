@@ -11,6 +11,8 @@ public interface SparkaufBuchungsRepository extends JpaRepository<SparkaufBuchun
 
     List<SparkaufBuchungsModel> findByMengeLagerGreaterThan(Double mengeLager);
 
+    List<SparkaufBuchungsModel> findByMengeLagerGreaterThanOrderByProduktAsc(Double mengeLager);
+
     List<SparkaufBuchungsModel> findByMengeLager(@Nullable Double mengeLager);
 
 

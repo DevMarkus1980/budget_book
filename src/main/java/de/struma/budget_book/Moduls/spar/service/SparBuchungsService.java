@@ -37,26 +37,7 @@ public class SparBuchungsService {
         }
 
     }
-    public List<SparkaufBuchungsModel> getInventar()  {return sparkaufBuchungsRepository.findByMengeLagerGreaterThan(0.0);}
-
-    public void plusProduct(Long id) {
-        SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
-        if(buchung.getMengeLager() < buchung.getMenge()) {
-            buchung.setMengeLager(buchung.getMengeLager() + 1);
-            setCalkYearConsum(buchung);
-            setCalkMissingUntilYearOver(buchung);
-            sparkaufBuchungsRepository.save(buchung);
-        }
-    }
-    public void minusProduct(Long id) {
-        SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
-        if(buchung.getMengeLager() > 0)  {
-            buchung.setMengeLager(buchung.getMengeLager() - 1);
-            setCalkYearConsum(buchung);
-            setCalkMissingUntilYearOver(buchung);
-            sparkaufBuchungsRepository.save(buchung);
-        }
-    }
+    public List<SparkaufBuchungsModel> getInventar()  {return sparkaufBuchungsRepository.findByMengeLagerGreaterThanOrderByProduktAsc(0.0);}
 
     public SparkaufBuchungsModel getSparbuchungByID(Long id) {
         SparkaufBuchungsModel buchung = sparkaufBuchungsRepository.findById(id).get();
@@ -82,5 +63,13 @@ public class SparBuchungsService {
 
     public List<SparkaufBuchungsModel> getSparBuchungWithNullInBestand() {
         return sparkaufBuchungsRepository.findByMengeLager(0.0);
+    }
+
+    public void saveAllAfterInventur(List<SparkaufBuchungsModel> setDTO) {
+        for(SparkaufBuchungsModel update : setDTO){
+            SparkaufBuchungsModel getFromRepo = sparkaufBuchungsRepository.getReferenceById(update.getId());
+            getFromRepo.setMengeLager(update.getMengeLager());
+            createBuchung(getFromRepo);
+        }
     }
 }
