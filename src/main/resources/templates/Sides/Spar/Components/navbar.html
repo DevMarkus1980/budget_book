@@ -24,6 +24,11 @@
             th:onclick="|window.location.href='@{/spar/inventur/}'|"
             type="button"><i class="bi bi-layer-forward" style="font-size: 2rem;"></i>
     </button>
+    <button class="btn btn-outline-light text-uppercase fw-bolder btn-block"
+            th:classappend="${#httpServletRequest.getRequestURI().startsWith('/spar/archiv/') ? 'active':''}"
+            th:onclick="|window.location.href='@{/spar/archiv/}'|"
+            type="button"><i class="bi bi-archive" style="font-size: 2rem;"></i>
+    </button>
 </div>
 
 </div>

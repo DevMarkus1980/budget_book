@@ -24,7 +24,10 @@ public class SparBuchungsService {
 
     public SparkaufBuchungsModel createBuchung(SparkaufBuchungsModel sparInfo) {
         //TODO: check warum keine o.o als neue lagerMenge gespeichert werden kann!
-
+        setCalkYearConsum(sparInfo);
+        setCalkMissingUntilYearOver(sparInfo);
+        setBestandswert(sparInfo);
+        setEingespartDurchDiesemEinkauf(sparInfo);
         return sparkaufBuchungsRepository.save(sparInfo);
     }
 
@@ -67,5 +70,17 @@ public class SparBuchungsService {
     }
     public void setCalkMissingUntilYearOver(SparkaufBuchungsModel newEntry) {
         buchungsKalkulationService.setKalkulatorischeFehlendeMengeBisMHD(newEntry);
+    }
+
+    public void setBestandswert(SparkaufBuchungsModel newEntry) {
+        buchungsKalkulationService.setBestandswert(newEntry);
+    }
+
+    public void setEingespartDurchDiesemEinkauf(SparkaufBuchungsModel newEntry) {
+        buchungsKalkulationService.setEingespartDurchDiesemEinkauf(newEntry);
+    }
+
+    public List<SparkaufBuchungsModel> getSparBuchungWithNullInBestand() {
+        return sparkaufBuchungsRepository.findByMengeLager(0.0);
     }
 }

@@ -107,20 +107,39 @@ public class BuchungsKalkulationService {
 
     }
     public void initCalkAllEntries(){
-        List<SparkaufBuchungsModel> updateAll = sparkaufBuchungsRepository.findByMengeLagerGreaterThan(0.01);
+        List<SparkaufBuchungsModel> updateAll = sparkaufBuchungsRepository.findAll();
 
         for(SparkaufBuchungsModel entry: updateAll){
+
+            // Setzt Update bei alten Datensätzen
             if(entry.getUpdateDate() == null){
                 entry.setUpdateDate(LocalDate.now());
             }
-
+            // Kalkuliert de kalk. Jahresmenge, wenn möglich bei alten Datensätzen
             if(!Objects.equals(entry.getMenge(), entry.getMengeLager())){
                 setKalkulatorischeJahresMenge(entry);
                 setKalkulatorischeFehlendeMengeBisMHD(entry);
             }
+                setBestandswert(entry);
+                setEingespartDurchDiesemEinkauf(entry);
+
         }
         sparkaufBuchungsRepository.saveAll(updateAll);
 
+    }
+
+    public void setEingespartDurchDiesemEinkauf(SparkaufBuchungsModel entry) {
+        if((entry.getMenge() > 0.0) && (entry.getEinkaufsPreis() > 0.0)&& (entry.getNormalPreis() > 0.0))
+            entry.setEingespartDurchDiesemEinkauf((entry.getNormalPreis()- entry.getEinkaufsPreis())* entry.getMenge());
+        else
+            entry.setBestandsWert(0.0);
+    }
+
+    public void setBestandswert(SparkaufBuchungsModel entry) {
+        if((entry.getMengeLager() >= 1.0) && (entry.getNormalPreis() > 0.0))
+            entry.setBestandsWert(entry.getMengeLager() * entry.getNormalPreis());
+        else
+            entry.setBestandsWert(0.0);
     }
 
 }

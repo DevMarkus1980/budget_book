@@ -29,8 +29,6 @@ public class SparController {
 		if(newEntry.getId() == null)
 			redirect = "redirect:/spar/";
 		else{
-			sparBuchungsService.setCalkYearConsum(newEntry);
-			sparBuchungsService.setCalkMissingUntilYearOver(newEntry);
 			redirect = "redirect:/spar/lager/";
 		}
 
@@ -54,6 +52,14 @@ public class SparController {
 	public String showLager(Model model) {
 
 		model.addAttribute("entries", sparBuchungsService.getSparBuchung());
+		model.addAttribute("view",  "lager");
+		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
+		return "Sides/Spar/spar_buchungen";
+	}
+	@GetMapping(value = "/spar/archiv/")
+	public String showLagerArchiv(Model model) {
+
+		model.addAttribute("entries", sparBuchungsService.getSparBuchungWithNullInBestand());
 		model.addAttribute("view",  "lager");
 		model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 		return "Sides/Spar/spar_buchungen";
