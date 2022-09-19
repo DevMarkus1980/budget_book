@@ -17,7 +17,7 @@ public class UtilityController {
 
 	@Bean(name = "app_name") // Gibt einen String zum Frontend über das Interface FrontService
 	public FrontService getAppName() {
-		return () -> "<< BudgetBook "+"v"+appVersion +" >>";
+		return () -> "BudgetBook "+"v"+appVersion;
 	}
 }
 interface FrontService{
