@@ -142,4 +142,7 @@ public class BuchungsKalkulationService {
             entry.setBestandsWert(0.0);
     }
 
+    public List<SparkaufBuchungsModel> getKalkulatorischeEinsparungTag() {
+        return sparkaufBuchungsRepository.findByBuyDate(LocalDate.now());
+    }
 }

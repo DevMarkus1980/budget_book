@@ -22,10 +22,9 @@ public class SparkaufBuchungsModel {
     Double bestandsWert = 0.0;
     Double eingespartDurchDiesemEinkauf = 0.0;
 
-
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate buyDate = LocalDate.now();
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate mHDDate = LocalDate.now().plusMonths(6);
 

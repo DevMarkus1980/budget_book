@@ -22,5 +22,11 @@
         <button th:utext="'Kalk. Einsparungen/Jahr: '+${#numbers.formatDecimal(displayModel.kalkulatorischeEinsparungenLaufendesJahr == null ? 0 : displayModel.kalkulatorischeEinsparungenLaufendesJahr, 0, 2)} +' €'"
                 type="button" disabled class="btn btn-outline-warning btn-sm mt-1 d-block p-1"></button>
     </div>
+    <div th:if="${displayModel.tagesErsparnis != null}"
+         data-bs-toggle="tooltip" data-bs-placement="right"
+         title="Tagesersparnis von heute">
+        <button th:utext="'Einsparung/Heute: '+${#numbers.formatDecimal(displayModel.tagesErsparnis == null ? 0 : displayModel.tagesErsparnis, 1, 2)} +' €'"
+                type="button" disabled class="btn btn-outline-warning btn-sm mt-1 d-block p-1"></button>
+    </div>
 
 </div>

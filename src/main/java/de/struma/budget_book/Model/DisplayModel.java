@@ -8,5 +8,6 @@ public class DisplayModel {
     double aktuellenWarenBestand;
     double aktuelleEinsparungenLaufendesJahr;
     double kalkulatorischeEinsparungenLaufendesJahr;
+    double tagesErsparnis;
 
 }

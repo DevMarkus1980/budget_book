@@ -60,8 +60,8 @@ public class W_BuchungService {
                 }
                 // TODO: Was soll er machen wenn mehrere Tage Fehlen
                 else if( e.getDatumErsteBuchung().getDayOfMonth() == today.getDayOfMonth() &&
-                        e.getDatumLetzteBuchung().isAfter(today.minusDays(1)) &&
-                        e.getZuletztCronJobDurchgefuert().isBefore(today.minusDays(1L))){
+                         e.getDatumLetzteBuchung().isAfter(today.minusDays(1)) &&
+                         e.getZuletztCronJobDurchgefuert().isBefore(today.minusDays(1L))){
 
                     long mengeAnTagenZwischenLetztenCronJobUndHeute= ChronoUnit.DAYS.between(
                             e.getZuletztCronJobDurchgefuert(),today);
