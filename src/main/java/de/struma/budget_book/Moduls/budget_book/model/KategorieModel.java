@@ -15,7 +15,6 @@ public class KategorieModel {
     @Column(name="kategorie_id")
     Long id;
     String name;
-    String Unterkategorie;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date erstellDatum = new Date(System.currentTimeMillis());

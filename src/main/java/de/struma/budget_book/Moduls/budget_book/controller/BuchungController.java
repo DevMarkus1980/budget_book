@@ -68,6 +68,7 @@ public class BuchungController {
     public String showWiederKehrendeHome(Model model) {
         model.addAttribute("neueBuchung", new WiederKehrendeBuchungModel());
         model.addAttribute("all", (w_buchungService.getAllBuchung()));
+        model.addAttribute("kategorien", kategorieService.getAllBuchung());
         model.addAttribute("displayModel", anzeigenService.updateDisplayView());
 
         return "Sides/Budget_Book/Buchung/w_buchung";
@@ -76,6 +77,7 @@ public class BuchungController {
     public String showEditWiederKehrendeHome(Model model, @PathVariable(name = "id") Long id) {
         model.addAttribute("neueBuchung", w_buchungService.getSparbuchungByID(id));
         model.addAttribute("all", (w_buchungService.getAllBuchung()));
+        model.addAttribute("kategorien", kategorieService.getAllBuchung());
         model.addAttribute("displayModel", anzeigenService.updateDisplayView());
         return "Sides/Budget_Book/Buchung/w_buchung";
     }

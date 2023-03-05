@@ -22,12 +22,13 @@
             <div class="invalid-feedback"> Die Summe muss angegeben werden </div></div>
 
         <div class="m-1">
-            <label class="fw-bolder mt-1"> Kategorie muss ausgewählt werden </label>
-            <input list="ShowDataList" class="form-control"  th:field="*{kategorie}">
-            <datalist id="ShowDataList">
-                <option th:each="kategorie : ${kategorien}" th:value="|${kategorie.name}"
-                        th:label="|${kategorie.name}|" >
-            </datalist>
+            <label class="fw-bolder "> Kategorie </label>
+            <select class="form-select" th:field="*{kategorie}">
+                <option th:each="kategorie : ${kategorien}"
+                        th:value="${kategorie.name}"
+                        th:text="${kategorie.name}">
+                </option>
+            </select>
         </div>
 
         <div class="m-1">

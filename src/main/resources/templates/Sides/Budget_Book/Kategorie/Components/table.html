@@ -12,6 +12,7 @@
             <th hidden > ID </th>
             <th> Name </th>
             <th> Datum </th>
+            <th> Option </th>
         </tr>
 
         </thead>
@@ -20,7 +21,9 @@
             <td hidden><span th:text="${kategorie.id}"></span></td>
             <td><span th:text="${kategorie.name}"></span></td>
             <td><span th:text="${#dates.format(kategorie.erstellDatum, 'dd-MM-yyyy')}"></span></td>
-
+            <td>
+                <a th:href="@{delete/__${kategorie.id}__}" class="btn btn-danger me-2">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>
