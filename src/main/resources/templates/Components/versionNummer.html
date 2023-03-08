@@ -3,10 +3,18 @@
 
 
     <div class="me-5 d-flex flex-row-reverse" th:fragment="version">
-        <button title="release" th:text="${@versionsnummer.getVersion()}"
-                type="button" disabled class="btn btn-outline-light btn-sm ms-2"></button>
+
+        <button class="btn btn-danger btn-sm ms-2" id="close-tab-btn" onclick="shutdown()"
+                th:onclick="|window.location.href='@{/shutdown/}'|">Shutdown</button>
+
         <button th:if="${displayModel.saldo != null}"
                 th:utext="'Saldo: '+${#numbers.formatDecimal(displayModel.saldo == null ? 0 : displayModel.saldo, 1, 2)} +' €'"
                 type="button" disabled class="btn btn-success btn-sm ms-2"></button>
+
+        <button title="release" th:text="${@versionsnummer.getVersion()}"
+                type="button" disabled class="btn btn-outline-light btn-sm ms-2"></button>
+
+
+
 
     </div>

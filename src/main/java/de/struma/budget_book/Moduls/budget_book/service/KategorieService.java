@@ -1,8 +1,8 @@
 package de.struma.budget_book.Moduls.budget_book.service;
 
+import de.struma.budget_book.Config.FirstSetupConfig;
 import de.struma.budget_book.Moduls.budget_book.model.KategorieModel;
 import de.struma.budget_book.Moduls.budget_book.repository.KategorieRepository;
-import de.struma.budget_book.Service.FirstSetupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 public class KategorieService {
 
     KategorieRepository kategorienRepository;
-    FirstSetupService firstSetupService;
+    FirstSetupConfig firstSetupService;
 
-    public KategorieService(KategorieRepository kategorienRepository, FirstSetupService firstSetupService){
+    public KategorieService(KategorieRepository kategorienRepository, FirstSetupConfig firstSetupService){
         this.kategorienRepository = kategorienRepository;
         this.firstSetupService = firstSetupService;
 

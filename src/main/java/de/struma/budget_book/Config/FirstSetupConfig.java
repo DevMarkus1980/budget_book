@@ -1,14 +1,14 @@
-package de.struma.budget_book.Service;
+package de.struma.budget_book.Config;
 
 import de.struma.budget_book.Moduls.budget_book.model.KategorieModel;
 import de.struma.budget_book.Moduls.budget_book.repository.KategorieRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FirstSetupService {
+public class FirstSetupConfig {
     KategorieRepository kategorieRepository;
 
-    public FirstSetupService(KategorieRepository _kategorieRepository){
+    public FirstSetupConfig(KategorieRepository _kategorieRepository){
         kategorieRepository = _kategorieRepository;
     }
     public void initKategorie() {
