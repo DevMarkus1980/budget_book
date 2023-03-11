@@ -11,6 +11,7 @@ public class FirstSetupConfig {
     public FirstSetupConfig(KategorieRepository _kategorieRepository){
         kategorieRepository = _kategorieRepository;
     }
+    
     public void initKategorie() {
         if(kategorieRepository.count()<1){
             String[] kategorienDummy = {
@@ -27,4 +28,5 @@ public class FirstSetupConfig {
             }
         }
     }
+
 }
